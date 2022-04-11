@@ -10,27 +10,28 @@ pageEncoding="utf-8"%>
 </head>
 <body>
 	<div>
+		<a href="/personalSpace">Back</a>
 		<form action="/add" method="post">
 			<table>
 				<tr>
 					<td>Name</td>
-					<td><input type="text" name="name" /></td>
+					<td><input type="text" name="offerName" /></td>
 				</tr>
 				<tr>
 					<td>Location</td>
-					<td><input type="text" name="location" /></td>
+					<td><input type="text" name="offerLocation" /></td>
 				</tr>
 				<tr>
 					<td>Duration</td>
-					<td><input type="text" name="duration" /></td>
+					<td><input type="text" name="offerDuration" /></td>
 				</tr>
 				<tr>
 					<td>Description</td>
-					<td><textarea name="description" /></textarea></td>
+					<td><textarea name="offerDescription" /></textarea></td>
 				</tr>
 				<tr>
 					<td>Images</td>
-					<td><input type="file" name="image" accept="image/png, image/jpeg" multiple></td>
+					<td><input type="file" name="offerImages" accept="image/png, image/jpeg" multiple></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="action" value="save" /></td>

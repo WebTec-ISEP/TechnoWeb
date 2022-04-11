@@ -18,7 +18,7 @@ public class MessagingController {
 	
 	@RequestMapping(value = "/messaging")
 	public String messaging(Model model, @RequestParam(name = "user", defaultValue = "")String u) {
-		List<Message> messages = messageDao.findByUser("%" + u + "%");
+		List<Message> messages = messageDao.findByUser(u);
 		model.addAttribute("messages", messages);
 		model.addAttribute("owner", u);
 		return("messaging");

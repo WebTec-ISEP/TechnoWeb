@@ -12,15 +12,6 @@
 		<a href="/home">home</a> 
 		<a href="/messaging">messages</a>
 	</div>
-	
-	<form action="/home" method="post">
-			<table>
-				<tr>
-					<td><input type="text" name="motCle" placeholder="search..."/></td>
-					<td><input type="submit" name="action" value="search" /></td>
-				</tr>
-			</table>
-	</form>
     
     <table class="taboffers">
 			<tr>
@@ -31,8 +22,9 @@
 			<tr>
 				<td>${o.idOffer}</td>
 				<td>${o.name}</td>
-				<td> <a onclick="return confirm('Please Confirm')" href="/teams/delete?ref=${o.idOffer}&mc=${motC}"> Delete </a> </td>
-				<td><a href="/edit?ref=${o.idOffer}&name=${o.name}&edit=0&mc=${motC}">Edit</a></td>
+				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
+				<td><a href="/edit?ref=${o.idOffer}&name=${name}">Edit</a></td>
+				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 			</tr>
 
 			</c:forEach>

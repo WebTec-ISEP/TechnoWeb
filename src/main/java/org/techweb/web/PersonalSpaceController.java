@@ -16,20 +16,17 @@ public class PersonalSpaceController {
 	private OfferRepository offerDao;
 	
 	@RequestMapping(value = "/personalSpace")
-	public String personalSpace(Model model, @RequestParam(name = "motCle", defaultValue = "") String mc) {
-		List<Offer> offers = offerDao.findByName("%" + mc + "%");
+	public String personalSpace(Model model, @RequestParam(name = "name", defaultValue = "") String owner) {
+		List<Offer> offers = offerDao.findByOwner(owner);
 		model.addAttribute("offers", offers);
-		model.addAttribute("motC", mc);
 		return("personalSpace");
 	}
 	
-	@RequestMapping(value = "/add")
-	public String add(Model model, @RequestParam(name = "motCle", defaultValue = "") String mc) {
-		return("offerManagement");
-	}
-	
-	@RequestMapping(value = "/edit")
-	public String edit(Model model, @RequestParam(name = "motCle", defaultValue = "") String mc) {
-		return("offerManagement");
+	@RequestMapping(value = "/delete")
+	public String delete(Model model, @RequestParam(name = "name", defaultValue = "") String owner, @RequestParam(name = "ref", defaultValue = "") Long offerId) {
+		offerDao.deleteById(offerId);
+		List<Offer> offers = offerDao.findByOwner(owner);
+		model.addAttribute("offers", offers);
+		return("personalSpace");
 	}
 }

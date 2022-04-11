@@ -17,6 +17,10 @@ public class User {
 		this.setName(name);
 		this.setPassword(password);
 	}
+	
+	public User(){
+		super();
+	}
 
 	public Long getIdUser() {
 		return idUser;

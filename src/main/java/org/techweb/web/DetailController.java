@@ -16,9 +16,11 @@ public class DetailController {
 	private OfferRepository offerDao;
 	
 	@RequestMapping(value = "/detail")
-	public String delete(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer) {
+	public String detail(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer) {
 		Optional<Offer> offer = offerDao.findById(idOffer);
-		model.addAttribute("offer", offer);
+		if(offer.isPresent()) {
+			model.addAttribute("offer", offer.get());
+		}
 		return "detail";
 	}
 	

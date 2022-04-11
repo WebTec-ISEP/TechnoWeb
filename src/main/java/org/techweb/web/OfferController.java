@@ -23,7 +23,7 @@ public class OfferController {
 		if(offer.isPresent()) {
 			model.addAttribute("offer", offer.get());
 		}
-		return "detail";
+		return "offer";
 	}
 	
 }

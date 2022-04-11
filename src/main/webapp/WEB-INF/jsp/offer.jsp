@@ -8,18 +8,21 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 </head>
 <body>
+	<a href="/home">Back</a> 
 	<table>
 		<tr>
 			<th>REF</th>
 			<th>Name</th>
 			<th>Location</th>
 			<th>Description</th>
+			<th>Owner</th>
 		</tr>
 		<tr>
 			<td>${offer.idOffer}</td>
 			<td>${offer.name}</td>
 			<td>${offer.location}</td>
 			<td>${offer.description}</td>
+			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
 		</tr>
 	</table>
 </body>
