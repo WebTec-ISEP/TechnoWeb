@@ -28,7 +28,7 @@
 			</tr>
 
 			</c:forEach>
-			<tr><td><a href="/add">Add</a></td></tr>
+			<tr><td><a href="/add?name=${name}">Add</a></td></tr>
 	</table>
 </body>
 </html>

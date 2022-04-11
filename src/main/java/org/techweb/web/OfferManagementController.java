@@ -1,5 +1,7 @@
 package org.techweb.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +16,11 @@ public class OfferManagementController {
 	private OfferRepository offerDao;
 	
 	@RequestMapping(value = "/add")
-	public String add(Model model,@RequestParam(name = "name", defaultValue = "") String name, 
-			@RequestParam(name = "offerName", defaultValue = "") String offerName,
+	public String add(Model model,@RequestParam(name = "offerName", defaultValue = "") String offerName,
 			@RequestParam(name = "offerLocation", defaultValue = "") String offerLocation,
 			@RequestParam(name = "offerDuration", defaultValue = "") Long offerDuration,
-			@RequestParam(name = "offerDescription", defaultValue = "") String offerDescription) {
+			@RequestParam(name = "offerDescription", defaultValue = "") String offerDescription,
+			HttpSession session) {
 		if (!(offerName.equals(""))) {
 			Offer offer = new Offer();
 			offer.setName(offerName);
@@ -26,7 +28,7 @@ public class OfferManagementController {
 			offer.setDuration(offerDuration);
 			offer.setDescription(offerDescription);
 			offer.setImages(new String[] {});
-			offer.setOwner(name);
+			offer.setOwner((String)session.getAttribute("name"));
 			offerDao.save(offer);
 		}
 		return ("offerManagement");
