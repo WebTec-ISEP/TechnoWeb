@@ -40,13 +40,15 @@ public class OfferManagementController {
 			@RequestParam(name = "offerLocation", defaultValue = "") String offerLocation,
 			@RequestParam(name = "offerDuration", defaultValue = "") Long offerDuration,
 			@RequestParam(name = "offerDescription", defaultValue = "") String offerDescription) {
-		Offer offer = offerDao.getById(idOffer);
-		offer.setName(offerName);
-		offer.setLocation(offerLocation);
-		offer.setDuration(offerDuration);
-		offer.setDescription(offerDescription);
-		offerDao.save(offer);
-		return("personalSpace");
+		if (!(offerName.equals(""))) {
+			Offer offer = offerDao.getById(idOffer);
+			offer.setName(offerName);
+			offer.setLocation(offerLocation);
+			offer.setDuration(offerDuration);
+			offer.setDescription(offerDescription);
+			offerDao.save(offer);
+		}
+		return("offerManagement");
 	}
 
 }
