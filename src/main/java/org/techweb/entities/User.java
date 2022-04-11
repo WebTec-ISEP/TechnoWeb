@@ -1,0 +1,44 @@
+package org.techweb.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+	@Id @GeneratedValue
+	private Long idUser;
+	@Column(length=100)
+	private String name;
+	private String password;
+	
+	public User(String name, String password) {
+		this.setName(name);
+		this.setPassword(password);
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+}
