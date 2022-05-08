@@ -8,12 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.techweb.entities.Message;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
-	@Query("select m from Message m where m.sender = :x or m.recipient = :x")
-	public List<Message> findByUser(@Param("x")String u);
+	@Query("select m from Message m where m.sender = :x and m.recipient = :y order by timeStamp")
+	public List<Message> findMessageWithSenderAndRecipient(@Param("x")String sender, @Param("y")String recipient);
 	
 	@Query("select distinct recipient from Message m where m.sender = :x")
-	public List<String> findSenders(@Param("x")String u);
+	public List<String> findRecipients(@Param("x")String sender);
 	
 	@Query("select distinct sender from Message m where m.recipient = :x")
-	public List<String> findRecipients(@Param("x")String u);
+	public List<String> findSenders(@Param("x")String recipient);
 }

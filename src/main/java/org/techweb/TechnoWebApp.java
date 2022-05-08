@@ -33,6 +33,7 @@ public class TechnoWebApp {
 		messageDao.save(new Message(user1.getName(),user2.getName(),123,"hello world"));
 		messageDao.save(new Message(user1.getName(),user3.getName(),123,"hello world"));
 		messageDao.save(new Message(user2.getName(),user1.getName(),124,"hello world 2"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),124,"hello world 2"));
 	}
 
 }
