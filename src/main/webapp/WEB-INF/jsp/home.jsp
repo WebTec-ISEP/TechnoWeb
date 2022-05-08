@@ -27,7 +27,7 @@
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="password" name="psw" /></td>
+					<td><input type="password" name="password" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="action" value="login" /></td>

@@ -16,12 +16,16 @@
 					<td><input type="text" name="name" /></td>
 				</tr>
 				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email" /></td>
+				</tr>
+				<tr>
 					<td>Password</td>
-					<td><input type="password" name="psw" /></td>
+					<td><input type="password" name="password" /></td>
 				</tr>
 				<tr>
 					<td>Verify password</td>
-					<td><input type="password" name="psw" /></td>
+					<td><input type="password" name="password" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="action" value="sign up" /></td>
