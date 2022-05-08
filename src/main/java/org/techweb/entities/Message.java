@@ -21,6 +21,10 @@ public class Message {
 		this.setTimeStamp(timeStamp);
 		this.setContent(content);
 	}
+	
+	public Message() {
+		super();
+	}
 
 	public Long getIdMessage() {
 		return idMessage;

@@ -10,4 +10,10 @@ import org.techweb.entities.Message;
 public interface MessageRepository extends JpaRepository<Message, Long> {
 	@Query("select m from Message m where m.sender = :x or m.recipient = :x")
 	public List<Message> findByUser(@Param("x")String u);
+	
+	@Query("select distinct recipient from Message m where m.sender = :x")
+	public List<String> findSenders(@Param("x")String u);
+	
+	@Query("select distinct sender from Message m where m.recipient = :x")
+	public List<String> findRecipients(@Param("x")String u);
 }

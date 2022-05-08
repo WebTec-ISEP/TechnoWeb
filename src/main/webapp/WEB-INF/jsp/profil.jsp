@@ -19,5 +19,6 @@
 			<td>${user.name}</td>
 		</tr>
 	</table>
+	<a href="/messaging">contact</a>
 </body>
 </html>

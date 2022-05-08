@@ -15,14 +15,29 @@
     <table class="tabmessage">
 			<tr>
 				<th>REF</th>
-				<th>Name</th>
+				<th>Content</th>
+				<th>Sender</th>
+				<th>Recipient</th>
+				<th>Time</th>
 			</tr>
-			<c:forEach items="${messages}" var="m">
-			<tr>
-				<td>${m.idMessages}</td>
-				<td>${m.content}</td>
-			</tr>
-
+			<c:forEach items="${messages}" var="message">
+				<tr>
+					<td>${message.idMessage}</td>
+					<td>${message.content}</td>
+					<td>${message.sender}</td>
+					<td>${message.timeStamp}</td>
+				</tr>
+			</c:forEach>
+	</table>
+	
+	<table class="tabcontacts">
+				<tr>
+					<th>name</th>
+				</tr>
+				<c:forEach items="${contacts}" var="name">
+				<tr>
+					<td>${name}</td>
+				</tr>
 			</c:forEach>
 	</table>
 	

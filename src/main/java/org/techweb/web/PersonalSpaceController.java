@@ -23,9 +23,12 @@ public class PersonalSpaceController {
 		String userName = (String)session.getAttribute("name");
 		if(userName == null) {
 			request.getSession().setAttribute("name", name);
+			List<Offer> offers = offerDao.findByOwner(name);
+			model.addAttribute("offers", offers);
+		} else {
+			List<Offer> offers = offerDao.findByOwner(userName);
+			model.addAttribute("offers", offers);
 		}
-		List<Offer> offers = offerDao.findByOwner(userName);
-		model.addAttribute("offers", offers);
 		return("personalSpace");
 	}
 	

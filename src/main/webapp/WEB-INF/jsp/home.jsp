@@ -6,9 +6,19 @@
 	<meta charset="utf-8">
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			if(${connected}==1){
+				$('.login').hide();
+			} else {
+				$('.logout').hide();
+			}
+		});
+	</script>
 </head>
 <body>
-	<div>
+	<div class="login">
 		<form action="/personalSpace" method="post">
 			<table>
 				<tr>
@@ -26,6 +36,7 @@
 		</form>
 		<div> <a href="/register">sign up</a> </div>
 	</div>
+	<a href="logout" class = "logout">log out</a>
 	<form action="/home" method="post">
 			<table>
 				<tr>
