@@ -29,7 +29,7 @@ public class PersonalSpaceController {
 		if (user == null) 
 			{
 			System.out.println("Failed to log in --> User : " + name + " Password: " + password);
-			return "personalSpaceAcessDenied_WrongUserName/Password";
+			return "redirect:/home";
 			}
 		System.out.println("User : " + name + " Password: " + password);
 		String userName = (String)session.getAttribute("name");
