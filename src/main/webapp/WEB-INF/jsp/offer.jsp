@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Home</title>
+	<title>Offer</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 </head>
 <body>
@@ -23,6 +23,9 @@
 			<td>${offer.location}</td>
 			<td>${offer.description}</td>
 			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
+		</tr>
+		<tr>
+			<td><a href="/trade">Trade</a></td>
 		</tr>
 	</table>
 </body>
