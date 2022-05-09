@@ -11,15 +11,15 @@ public class Offer {
 	private Long idOffer;
 	@Column(length=100)
 	private String name;
-	private String[] images;
+//	private String[] images;
 	private String location;
 	private long duration;
 	private String description;
 	private String owner;
 	
-	public Offer(String name, String[] images, String location, long duration, String description, String owner) {
+	public Offer(String name/*, byte images*/, String location, long duration, String description, String owner) {
 		this.setName(name);
-		this.setImages(images);
+//		this.setImages(images);
 		this.setLocation(location);
 		this.setDuration(duration);
 		this.setDescription(description);
@@ -45,14 +45,14 @@ public class Offer {
 	public void setName(String name) {
 		this.name = name;
 	}
+//
+//	public String[] getImages() {
+//		return images;
+//	}
 
-	public String[] getImages() {
-		return images;
-	}
-
-	public void setImages(String[] images) {
-		this.images = images;
-	}
+//	public void setImages(byte images) {
+//		this.images = images;
+//	}
 
 	public String getLocation() {
 		return location;

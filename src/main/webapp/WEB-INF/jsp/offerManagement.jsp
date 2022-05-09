@@ -11,7 +11,7 @@ pageEncoding="utf-8"%>
 <body>
 	<div>
 		<a href="/personalSpace">Back</a>
-		<form action="/add" method="post">
+		<form action="/addOffer/submit" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>Name</td>

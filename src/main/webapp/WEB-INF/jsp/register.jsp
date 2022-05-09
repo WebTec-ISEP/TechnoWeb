@@ -25,7 +25,7 @@
 				</tr>
 				<tr>
 					<td>Verify password</td>
-					<td><input type="password" name="password" /></td>
+					<td><input type="passwordVerify" name="passwordVerify" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="action" value="sign up" /></td>

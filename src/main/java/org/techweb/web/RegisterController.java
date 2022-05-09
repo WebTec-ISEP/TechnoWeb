@@ -20,10 +20,10 @@ public class RegisterController {
 	private UserRepository userDao;
 	
 	@RequestMapping(value = "/register")
-	public String register(HttpServletRequest request,@RequestParam(name = "name", defaultValue = "") String name,@RequestParam(name = "password", defaultValue = "") String password,@RequestParam(name = "email", defaultValue = "") String email) {
+	public String register(HttpServletRequest request,@RequestParam(name = "name", defaultValue = "") String name,@RequestParam(name = "password", defaultValue = "") String password,@RequestParam(name = "password", defaultValue = "") String passwordVerify,@RequestParam(name = "email", defaultValue = "") String email) {
 		//TODO verify user does not exist already
 		if(!userDao.doesUserNameExist(name)) {
-			return("Could not Register this username already exist");
+			return("redirect:/register");
 		}
 
 		User user = new User();
