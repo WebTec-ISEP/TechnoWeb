@@ -11,14 +11,29 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
+			var selector = document.getElementById("selectContact");
+			if('${select}'!=""){
+				setOption(selector,'${select}');
+			}
 			$('.conv').hide();
+			$('#'+selector.value).show();
+			$('#recipient').val(selector.value);
 		});
-		function updated(element){
-		    var idx=element.selectedIndex;
-		    var val=element.options[idx].value;
-		    var content=element.options[idx].innerHTML;
+
+		function updated(){
+			var selector = document.getElementById("selectContact");
+			$('#recipient').val(selector.value);
 		    $('.conv').hide();
-		    $('#'+content).show();
+		    $('#'+selector.value).show();
+		}
+		
+		function setOption(selectElement, value) {
+		    return [...selectElement.options].some((option, index) => {
+		        if (option.value == value) {
+		            selectElement.selectedIndex = index;
+		            return true;
+		        }
+		    });
 		}
 	</script>
 </head>
@@ -27,7 +42,7 @@
 		<a href="/personalSpace">back</a> 
 	</div>
     
-	<select name="item" class="selectContact" onchange="updated(this)">
+	<select name="item" id="selectContact" onchange="updated()">
 		<c:forEach items="${messages.keySet()}" var="contact">
 			<option>${contact}</option>
 		</c:forEach>
@@ -37,24 +52,23 @@
 		<% Map<String,List<Message>> messages = (Map<String,List<Message>>)request.getAttribute("messages"); %>
 		<c:forEach items="${messages.keySet()}" var="contact">
 			<div class="conv" id="${contact}">${contact}<br>
-			<% 
-			 	String contact = (String)pageContext.getAttribute("contact");
+			<% String contact = (String)pageContext.getAttribute("contact");
 				List<Message> messagesList = messages.get(contact);
 				for(Message message:messagesList){%>
 				<p>
 					<%out.print(message.getSender()+" : "+message.getContent());%>
 				</p>
-				<%}
-			%>
+				<%}%>
 			</div>
 		</c:forEach>
 	</table>
 	
-	<form action="/messaging" method="post">
+	<form action="/messaging" method="post" name="sendMessage">
 			<table>
 				<tr>
 					<td><input type="text" name="message" placeholder="message..."/></td>
-					<td><input type="submit" name="action" value="send" /></td>
+					<td><input type="hidden" name="recipient" id="recipient" value="no"/></td>
+					<td><input type="submit" name="action" value="send"/></td>
 				</tr>
 			</table>
 	</form>
