@@ -20,26 +20,23 @@ public class RegisterController {
 	private UserRepository userDao;
 	
 	@RequestMapping(value = "/register")
-	public String register(HttpServletRequest request,@RequestParam(name = "name", defaultValue = "") String name,@RequestParam(name = "password", defaultValue = "") String password,@RequestParam(name = "email", defaultValue = "") String email) {
-		//TODO verify user does not exist already
-		if(!userDao.doesUserNameExist(name)) {
-			return("Could not Register this username already exist");
+	public String register(Model model,@RequestParam(name = "name", defaultValue = "") String name,@RequestParam(name = "password", defaultValue = "") String password,@RequestParam(name = "verifyPassword", defaultValue = "") String verifyPassword, @RequestParam(name = "email", defaultValue = "") String email) {
+		boolean error = false;
+		if(userDao.doesUserNameExist(name)==1) {
+			model.addAttribute("UserNameExist","1");
+			error = true;
 		}
-
-		User user = new User();
-		user.setEmail(email);
-		user.setName(name);
-		user.setPassword(password);
+		if(!password.equals(verifyPassword)) {
+			model.addAttribute("PasswordMismatch","1");
+			error = true;
+		}
+		if(error) {
+			return("register");
+		}
+		
+		User user = new User(name,password,email);
 		userDao.save(user);
 		
-		return("register");
+		return("home");
 	}
-	
-	@RequestMapping(value = "/forgotPassword")
-	public String forgotPassword(HttpServletRequest request,@RequestParam String mail) {
-		
-	    //TODO send mail with password / or password change link
-		return "forgotPassword";
-	}
-	
 }

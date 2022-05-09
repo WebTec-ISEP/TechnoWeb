@@ -23,17 +23,14 @@ public class PersonalSpaceController {
 	private UserRepository userDao;
 	
 	@RequestMapping(value = "/personalSpace")
-	public String personalSpace(Model model, @RequestParam(name = "name", defaultValue = "") String name,@RequestParam(name = "password", defaultValue = "") String password,HttpServletRequest request, HttpSession session) {
-		
-		User user = userDao.login(name,password);
-		if (user == null) 
-			{
-			System.out.println("Failed to log in --> User : " + name + " Password: " + password);
-			return "redirect:/home";
-			}
-		System.out.println("User : " + name + " Password: " + password);
+	public String personalSpace(Model model, @RequestParam(name = "name", defaultValue = "") String name,@RequestParam(name = "password", defaultValue = "") String password,HttpServletRequest request, HttpSession session) {	
 		String userName = (String)session.getAttribute("name");
 		if(userName == null) {
+			User user = userDao.login(name,password);
+			if (user == null) {
+				System.out.println("Failed to log in --> User : " + name + " Password: " + password);
+				return "redirect:/home";
+			}
 			request.getSession().setAttribute("name", name);
 			List<Offer> offers = offerDao.findByOwner(name);
 			model.addAttribute("offers", offers);

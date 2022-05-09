@@ -15,5 +15,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	public User login(@Param("name")String name, @Param("password")String password);
 
 	@Query("SELECT COUNT(1) from User u where u.name = :name ")
-	public boolean doesUserNameExist(@Param("name")String name);
+	public long doesUserNameExist(@Param("name")String name);
 }

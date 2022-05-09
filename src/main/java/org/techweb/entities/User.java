@@ -14,9 +14,10 @@ public class User {
 	private String password;
 	private String email;
 	
-	public User(String name, String password) {
+	public User(String name, String password, String email) {
 		this.setName(name);
 		this.setPassword(password);
+		this.setEmail(email);
 	}
 	
 	public User(){

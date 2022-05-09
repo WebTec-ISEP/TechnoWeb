@@ -32,11 +32,6 @@ public class HomeController {
 		return("home");
 	}
 	
-	@RequestMapping(value = "/register")
-	public String register() {
-		return("register");
-	}
-	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 	    HttpSession session = request.getSession(false);

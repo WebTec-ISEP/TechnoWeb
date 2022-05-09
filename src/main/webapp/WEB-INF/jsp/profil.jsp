@@ -19,6 +19,6 @@
 			<td>${user.name}</td>
 		</tr>
 	</table>
-	<a href="/messaging">contact</a>
+	<a href="/messaging?user=${user.name}">contact</a>
 </body>
 </html>
