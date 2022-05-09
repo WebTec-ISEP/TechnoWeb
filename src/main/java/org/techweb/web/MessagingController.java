@@ -1,7 +1,9 @@
 package org.techweb.web;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.techweb.dao.MessageRepository;
 import org.techweb.entities.Message;
 
@@ -24,9 +27,18 @@ public class MessagingController {
 	private MessageRepository messageDao;
 	
 	@RequestMapping(value = "/messaging")
-	public String messaging(Model model, HttpSession session) {
+	public String messaging(Model model,@RequestParam(name = "message", defaultValue = "") String message, @RequestParam(name = "recipient", defaultValue = "") String recipient, HttpSession session) {
 		String userName = (String)session.getAttribute("name");
 		
+		if(!message.equals("")) {
+			System.out.println(recipient);
+			Date date = new Date();
+			Timestamp timestamp = new Timestamp(date.getTime());
+			messageDao.save(new Message(userName,recipient,timestamp.getTime(),message));
+			model.addAttribute("select", recipient);
+		} else {
+			model.addAttribute("select", "");
+		}
 		List<String> listOfName = messageDao.findSenders(userName);
 		listOfName.addAll(messageDao.findRecipients(userName));
 		Set<String> setOfName = new HashSet<String>(listOfName);
@@ -44,7 +56,8 @@ public class MessagingController {
 		}
 		
 		model.addAttribute("messages", messages);
-		messages.forEach((key, value) -> System.out.println(key + ":" + value));
+		messages.forEach((key, value) -> System.out.println(key + ":" + value.stream().map(n -> String.valueOf(n.getContent()))
+			      .collect(Collectors.joining("-", "{", "}"))));
 		return("messaging");
 	}
 }
