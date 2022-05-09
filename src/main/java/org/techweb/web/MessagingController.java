@@ -27,18 +27,18 @@ public class MessagingController {
 	private MessageRepository messageDao;
 	
 	@RequestMapping(value = "/messaging")
-	public String messaging(Model model,@RequestParam(name = "message", defaultValue = "") String message, @RequestParam(name = "recipient", defaultValue = "") String recipient, HttpSession session) {
+	public String messaging(Model model,@RequestParam(name = "message", defaultValue = "") String message, @RequestParam(name = "recipient", defaultValue = "") String recipient,@RequestParam(name = "user", defaultValue = "") String user, HttpSession session) {
 		String userName = (String)session.getAttribute("name");
 		
 		if(!message.equals("")) {
-			System.out.println(recipient);
 			Date date = new Date();
 			Timestamp timestamp = new Timestamp(date.getTime());
 			messageDao.save(new Message(userName,recipient,timestamp.getTime(),message));
 			model.addAttribute("select", recipient);
-		} else {
-			model.addAttribute("select", "");
+		} else if(!user.equals("")){
+			model.addAttribute("select", user);
 		}
+		
 		List<String> listOfName = messageDao.findSenders(userName);
 		listOfName.addAll(messageDao.findRecipients(userName));
 		Set<String> setOfName = new HashSet<String>(listOfName);
@@ -54,7 +54,10 @@ public class MessagingController {
 			messagesList = messagesList.stream().sorted(Comparator.comparingLong(Message::getTimeStamp)).collect(Collectors.toList());
 			messages.put(contact, messagesList);
 		}
-		
+		System.out.println(messages.containsKey(user));
+		if(!messages.containsKey(user) && !user.equals("")) {
+			messages.put(user, new ArrayList<Message>());
+		}
 		model.addAttribute("messages", messages);
 		messages.forEach((key, value) -> System.out.println(key + ":" + value.stream().map(n -> String.valueOf(n.getContent()))
 			      .collect(Collectors.joining("-", "{", "}"))));

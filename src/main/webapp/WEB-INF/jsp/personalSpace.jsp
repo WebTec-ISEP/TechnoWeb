@@ -13,22 +13,22 @@
 		<a href="/messaging">messages</a>
 	</div>
     
-    <table class="taboffers">
-			<tr>
-				<th>REF</th>
-				<th>Name</th>
-			</tr>
-			<c:forEach items="${offers}" var="o">
-			<tr>
-				<td>${o.idOffer}</td>
-				<td>${o.name}</td>
-				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
-				<td><a href="/edit?ref=${o.idOffer}&name=${name}">Edit</a></td>
-				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
-			</tr>
-
-			</c:forEach>
-			<tr><td><a href="/addOffer">Add</a></td></tr>
+    <table class="tabOffers">
+    	<caption>Vos Offres</caption>
+		<tr>
+			<th>REF</th>
+			<th>Name</th>
+		</tr>
+		<c:forEach items="${offers}" var="o">
+		<tr>
+			<td>${o.idOffer}</td>
+			<td>${o.name}</td>
+			<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
+			<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
+			<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
+		</tr>
+		</c:forEach>
+		<tr><td><a href="/add">Add</a></td></tr>
 	</table>
 </body>
 </html>

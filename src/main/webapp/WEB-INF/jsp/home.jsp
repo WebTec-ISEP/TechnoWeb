@@ -11,8 +11,10 @@
 		$(document).ready(function(){
 			if(${connected}==1){
 				$('.login').hide();
+				$('.register').hide();
 			} else {
 				$('.logout').hide();
+				$('.personalSpace').hide();
 			}
 		});
 	</script>
@@ -34,9 +36,10 @@
 				</tr>
 			</table>
 		</form>
-		<div> <a href="/register">sign up</a> </div>
+		<a href="/register" class = "register">sign up</a>
 	</div>
-	<a href="logout" class = "logout">log out</a>
+	<a href="/logout" class = "logout">log out</a>
+	<a href="/personalSpace" class = "personalSpace">Personal space</a>
 	<form action="/home" method="post">
 			<table>
 				<tr>

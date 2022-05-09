@@ -18,9 +18,9 @@ public class TechnoWebApp {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(TechnoWebApp.class, args);
-		User user1 = new User("root","123");
-		User user2 = new User("toto","1234");
-		User user3 = new User("titi","1234");
+		User user1 = new User("root","123","mail1");
+		User user2 = new User("toto","1234","mail2");
+		User user3 = new User("titi","1234","mail3");
 		UserRepository userDao = ctx.getBean(UserRepository.class);
 		userDao.save(user1);
 		userDao.save(user2);
@@ -39,10 +39,10 @@ public class TechnoWebApp {
 		imageDao.save(new Image(new byte[100000],offer3.getIdOffer()));
 		MessageRepository messageDao = ctx.getBean(MessageRepository.class);
 		messageDao.save(new Message(user1.getName(),user2.getName(),123,"hello world"));
-		messageDao.save(new Message(user1.getName(),user3.getName(),123,"hello world"));
+		//messageDao.save(new Message(user1.getName(),user3.getName(),123,"hello world"));
 		messageDao.save(new Message(user2.getName(),user1.getName(),124,"hello world 2"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),124,"hello world 2"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),125,"hello world 3"));
+		//messageDao.save(new Message(user3.getName(),user1.getName(),124,"hello world 2"));
+		//messageDao.save(new Message(user3.getName(),user1.getName(),125,"hello world 3"));
 	}
 
 }
