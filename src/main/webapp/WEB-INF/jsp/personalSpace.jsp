@@ -28,7 +28,7 @@
 			<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 		</tr>
 		</c:forEach>
-		<tr><td><a href="/add">Add</a></td></tr>
+		<tr><td><a href="/addOffer">Add</a></td></tr>
 	</table>
 </body>
 </html>

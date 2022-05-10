@@ -26,9 +26,9 @@ public class TechnoWebApp {
 		userDao.save(user2);
 		userDao.save(user3);
 		OfferRepository offerDao = ctx.getBean(OfferRepository.class);
-		Offer offer1 = new Offer("offer1",/*new String[] {"i1","i2","i3"},*/"france",1,"jolie maison", user1.getName());
-		Offer offer2 = new Offer("offer2",/*new String[] {"i1","i2","i3"},*/"france",1,"jolie maison", user2.getName());
-		Offer offer3 = new Offer("offer3",/*new String[] {"i1","i2","i3"},*/"france",1,"jolie maison", user3.getName());
+		Offer offer1 = new Offer("offer1","france",1,"jolie maison", user1.getName());
+		Offer offer2 = new Offer("offer2","france",1,"jolie maison", user2.getName());
+		Offer offer3 = new Offer("offer3","france",1,"jolie maison", user3.getName());
 		offerDao.save(offer1);
 		offerDao.save(offer2);
 		offerDao.save(offer3);

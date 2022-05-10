@@ -15,7 +15,7 @@ pageEncoding="utf-8"%>
 			<table>
 				<tr>
 					<td>Name</td>
-					<td><input type="text" name="offerName" /></td>
+					<td><input type="text" name="offerName"/></td>
 				</tr>
 				<tr>
 					<td>Location</td>
@@ -33,12 +33,98 @@ pageEncoding="utf-8"%>
 					<td>Images</td>
 					<td><input type="file" name="offerImages" accept="image/png, image/jpeg" multiple></td>
 				</tr>
-				<tr>
-					<td><input type="submit" name="action" value="save" /></td>
-				</tr>
 			</table>
+			<fieldset>
+			    <legend>Equipements</legend>
+			
+			    <div>
+			      <input type="checkbox" name="equipments" value="shower">
+			      <label>Douche</label>
+			    </div>
+			
+			    <div>
+			      <input type="checkbox" name="equipments" value="bath">
+			      <label>Baignoire</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="equipments" value="hoven">
+			      <label>Four</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="equipments" value="microwave">
+			      <label>Micro-onde</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="equipments" value ="coffeeMachine">
+			      <label>Machine à café</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="equipments" value ="vacuum">
+			      <label>Aspirateur</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="equipments" value ="TV">
+			      <label>Télévision</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="equipments" value ="wifi">
+			      <label>Wifi</label>
+			    </div>
+			</fieldset>
+			<fieldset>
+			    <legend>Services</legend>
+			
+			    <div>
+			      <input type="checkbox" name="services" value="water">
+			      <label>Arroser les plantes</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="services" value="pet">
+			      <label>Keep pet</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="services" value="clean">
+			      <label>Clean house</label>
+			    </div>
+			    
+			</fieldset>
+			<fieldset>
+			    <legend>Constraints</legend>
+			
+			    <div>
+			      <input type="checkbox" name="constraints" value="smoking">
+			      <label>Interdiction de fumer</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="constraints" value="noise">
+			      <label>Pas de bruit après 23h</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="constraints" value="pets">
+			      <label>Pas d'animaux</label>
+			    </div>
+			    
+			    <div>
+			      <input type="checkbox" name="constraints" value="children">
+			      <label>Pas d'enfants</label>
+			    </div>
+			    
+			    
+			</fieldset>
+			<input type="submit" name="action" value="save" />
 		</form>
 		<div> <a href="/personalSpace">back</a> </div>
 	</div>
+	
 </body>
 </html>

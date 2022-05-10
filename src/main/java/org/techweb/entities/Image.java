@@ -13,15 +13,19 @@ public class Image {
 	@Id @GeneratedValue
 	private Long idImage;
 	
-	@Column(length=100)
+	@Column(length=500000)
 	private byte[] image;
-
 	private Long offerId;
 
 	public Image(byte[] images, Long offerId) {
 		this.setImage(images);
 		this.setOfferId(offerId);
 	}
+	
+	public Image() {
+		super();
+	}
+
 
 	public byte[] getImage() {
 		return image;

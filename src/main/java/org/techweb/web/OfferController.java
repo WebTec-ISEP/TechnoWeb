@@ -2,6 +2,9 @@ package org.techweb.web;
 
 
 
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -11,13 +14,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.techweb.dao.ImageRepository;
 import org.techweb.dao.OfferRepository;
+import org.techweb.entities.Image;
 import org.techweb.entities.Offer;
 
 @Controller
 public class OfferController {
 	@Autowired
 	private OfferRepository offerDao;
+	@Autowired
+	private ImageRepository imageDao;
 	
 	@RequestMapping(value = "/offer")
 	public String delete(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer, HttpSession session) {
@@ -32,6 +39,15 @@ public class OfferController {
 		Optional<Offer> offer = offerDao.findById(idOffer);
 		if(offer.isPresent()) {
 			model.addAttribute("offer", offer.get());
+			List<Image> images = imageDao.findByOfferId(idOffer);
+			List<String> imagesBase64String = new ArrayList();
+			for(Image image:images) {
+				byte[] imageInBytes = image.getImage();
+				String base64String = Base64.getEncoder().encodeToString(imageInBytes);
+				System.out.println(base64String);
+				imagesBase64String.add(base64String);
+			}
+			model.addAttribute("images", imagesBase64String);
 		}
 		
 		

@@ -28,5 +28,8 @@
 			<td><a href="/trade">Trade</a></td>
 		</tr>
 	</table>
+	<c:forEach items="${images}" var="i">
+		<img src="data:image/jpg;base64,${i}"/>
+	</c:forEach>
 </body>
 </html>
