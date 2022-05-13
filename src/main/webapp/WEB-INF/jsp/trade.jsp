@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 </head>
 <body>
-	<a href="/offer?ref=${idOffer}">Back</a>
+	<a href="/offer?ref=${offer.idOffer}">Back</a>
 	<table>
 		<tr>
 			<th>REF</th>
@@ -25,10 +25,14 @@
 			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
 		</tr>
 	</table>
-	<select>
-		<c:forEach items="${offers}" var="o">
-			<option value="${o.idOffer}">${o.name}</option><a href="/detail?ref=${o.idOffer}">Detail</a>
-		</c:forEach>
-	</select>
+	<form action="/tradeProposal" method="post">
+		<select name="selected">
+			<c:forEach items="${offers}" var="o">
+				<option value="${o.idOffer}">${o.name}</option><a href="/detail?ref=${o.idOffer}">Detail</a>
+			</c:forEach>
+		</select>
+		<input type="hidden" name="idOffer" value="${offer.idOffer}" />
+		<input type="submit" name="action" value="propose" />
+	</form>
 </body>
 </html>

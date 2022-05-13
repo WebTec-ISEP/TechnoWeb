@@ -22,5 +22,24 @@
 			<td>${offer.description}</td>
 		</tr>
 	</table>
+	
+	<table class="tabOffersProposal">
+    	<caption>Offers proposal</caption>
+		<tr>
+			<th>REF</th>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Description</th>
+		</tr>
+		<c:forEach items="${offersProposal}" var="o">
+		<tr>
+			<td>${o.idOffer}</td>
+			<td>${o.name}</td>
+			<td>${o.location}</td>
+			<td>${o.description}</td>
+			<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
+		</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

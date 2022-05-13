@@ -37,6 +37,6 @@ public class RegisterController {
 		User user = new User(name,password,email);
 		userDao.save(user);
 		
-		return("home");
+		return("redirect:/home");
 	}
 }

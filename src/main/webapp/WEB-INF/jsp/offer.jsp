@@ -25,7 +25,7 @@
 			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
 		</tr>
 		<tr>
-			<td><a href="/trade">Trade</a></td>
+			<td><a href="/trade?ref=${offer.idOffer}">Trade</a></td>
 		</tr>
 	</table>
 	<c:forEach items="${images}" var="i">

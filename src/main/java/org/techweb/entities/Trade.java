@@ -10,10 +10,10 @@ public class Trade {
 	@Id @GeneratedValue
 	private Long idTrade;
 	@Column(length=100)
-	private String senderOfferId;
-	private String recipientOfferId;
+	private Long senderOfferId;
+	private Long recipientOfferId;
 	
-	public Trade(String senderOffer, String recipientOffer){
+	public Trade(Long senderOffer, Long recipientOffer){
 		this.setSenderOffer(senderOffer);
 		this.setRecipientOffer(recipientOffer);
 	}
@@ -22,19 +22,19 @@ public class Trade {
 		super();
 	}
 
-	public String getSenderOffer() {
+	public Long getSenderOffer() {
 		return senderOfferId;
 	}
 
-	public void setSenderOffer(String senderOffer) {
+	public void setSenderOffer(Long senderOffer) {
 		this.senderOfferId = senderOffer;
 	}
 
-	public String getRecipientOffer() {
+	public Long getRecipientOffer() {
 		return recipientOfferId;
 	}
 
-	public void setRecipientOffer(String recipientOffer) {
+	public void setRecipientOffer(Long recipientOffer) {
 		this.recipientOfferId = recipientOffer;
 	}
 
