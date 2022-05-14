@@ -14,8 +14,8 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
 	@Query("select o from Offer o where o.location = :x")
 	public List<Offer> findByLocation(@Param("x")String offerLocation);
 	
-	@Query("select o from Offer o where o.owner = :x")
-	public List<Offer> findByOwner(@Param("x")String offerOwner);
+	@Query("select o from Offer o where o.owner = :x and o.validate= :y")
+	public List<Offer> findByOwnerAndValidation(@Param("x")String offerOwner, @Param("y")Boolean validate);
 	
 	@Query("select id from Offer o where o.owner = :x and o.name = :y")
 	public long findByOwnerAndName(@Param("x")String offerOwner,@Param("y")String offerName);

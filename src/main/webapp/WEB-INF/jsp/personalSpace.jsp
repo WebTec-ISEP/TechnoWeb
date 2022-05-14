@@ -20,15 +20,30 @@
 			<th>Name</th>
 		</tr>
 		<c:forEach items="${offers}" var="o">
-		<tr>
-			<td>${o.idOffer}</td>
-			<td>${o.name}</td>
-			<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
-			<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
-			<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
-		</tr>
+			<tr>
+				<td>${o.idOffer}</td>
+				<td>${o.name}</td>
+				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
+				<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
+				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
+			</tr>
 		</c:forEach>
 		<tr><td><a href="/addOffer">Add</a></td></tr>
+	</table>
+	
+	<table class="tabAcceptedOffers">
+    	<caption>Accepted Offers</caption>
+		<tr>
+			<th>REF</th>
+			<th>Name</th>
+		</tr>
+		<c:forEach items="${acceptedOffers}" var="o">
+			<tr>
+				<td>${o.idOffer}</td>
+				<td>${o.name}</td>
+				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
+			</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>

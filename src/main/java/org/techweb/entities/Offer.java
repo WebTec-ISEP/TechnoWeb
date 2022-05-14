@@ -15,8 +15,10 @@ public class Offer {
 	private long duration;
 	private String description;
 	private String owner;
+	private boolean validate;
 	
 	public Offer(String name, String location, long duration, String description, String owner) {
+		setValidate(false);
 		this.setName(name);
 		this.setLocation(location);
 		this.setDuration(duration);
@@ -74,5 +76,13 @@ public class Offer {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public boolean isValidate() {
+		return validate;
+	}
+
+	public void setValidate(boolean validate) {
+		this.validate = validate;
 	}
 }

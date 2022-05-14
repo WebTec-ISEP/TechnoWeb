@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,18 +24,53 @@ public class DetailController {
 	private TradeRepository tradeDao;
 	
 	@RequestMapping(value = "/detail")
-	public String detail(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer) {
+	public String detail(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer, @RequestParam(name = "previous", defaultValue = "") Long previous,HttpSession session) {
 		Optional<Offer> offer = offerDao.findById(idOffer);
 		if(offer.isPresent()) {
-			model.addAttribute("offer", offer.get());
-			List<Trade> tradesProposal = tradeDao.findTradeProposal(idOffer);
-			List<Offer> offersProposal = new ArrayList();
-			for(Trade trade:tradesProposal) {
-				offersProposal.add(offerDao.getById(trade.getSenderOffer()));
+			Offer getOffer = offer.get();
+			model.addAttribute("offer", getOffer);
+			String userName = (String)session.getAttribute("name");
+			if(getOffer.getOwner().equals(userName)) {
+				List<Trade> tradesProposal = tradeDao.findPendingTradeProposal(idOffer);
+				List<Offer> offersProposal = new ArrayList();
+				for(Trade trade:tradesProposal) {
+					offersProposal.add(offerDao.getById(trade.getSenderOffer()));
+				}
+				model.addAttribute("offersProposal", offersProposal);
+				
+				List<Trade> tradesProposed = tradeDao.findPendingTradeProposed(idOffer);
+				List<Offer> offersProposed = new ArrayList();
+				for(Trade trade:tradesProposed) {
+					offersProposed.add(offerDao.getById(trade.getRecipientOffer()));
+				}
+				model.addAttribute("offersProposed", offersProposed);
 			}
-			model.addAttribute("offersProposal", offersProposal);
+			model.addAttribute("previous", previous);
 		}
 		return "detail";
+	}
+	
+	@RequestMapping(value = "/respond")
+	public String respond(Model model, @RequestParam(name = "accept", defaultValue = "") Long acceptId, @RequestParam(name = "refuse", defaultValue = "") Long refuseId, @RequestParam(name = "idOffer", defaultValue = "") Long idOffer, HttpSession session) {
+		if(acceptId != null) {
+			Trade trade = tradeDao.findBySenderAndRecipientOffers(acceptId, idOffer);
+			trade.setValidate(true);
+			List<Trade> canceledTrades = tradeDao.findTradesForOffer(idOffer);
+			for(Trade t:canceledTrades) {
+				tradeDao.delete(t);
+			}
+			tradeDao.save(trade);
+			Offer senderOffer = offerDao.getById(acceptId);
+			senderOffer.setValidate(true);
+			offerDao.save(senderOffer);
+			Offer recipientOffer = offerDao.getById(idOffer);
+			recipientOffer.setValidate(true);
+			offerDao.save(recipientOffer);
+		} else if(refuseId != null) {
+			Trade trade = tradeDao.findBySenderAndRecipientOffers(refuseId, idOffer);
+			tradeDao.delete(trade);
+		}
+		return "redirect:/detail?ref="+idOffer;
 	}
 	
 

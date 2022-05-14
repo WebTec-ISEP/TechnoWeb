@@ -30,7 +30,7 @@ public class TradeController {
 			model.addAttribute("offer", offer.get());
 		}
 		String userName = (String)session.getAttribute("name");
-		List<Offer> offers = offerDao.findByOwner(userName);
+		List<Offer> offers = offerDao.findByOwnerAndValidation(userName,false);
 		model.addAttribute("offers", offers);
 		return "trade";
 	}

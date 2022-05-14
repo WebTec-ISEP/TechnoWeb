@@ -11,12 +11,18 @@ import org.techweb.entities.User;
 
 public interface TradeRepository extends JpaRepository<Trade, Long>{
 	@Query("select t from Trade t where t.senderOfferId = :x or t.recipientOfferId = :x")
-	public List<Trade> findByOffer(@Param("x")Long offerId);
+	public List<Trade> findTradesForOffer(@Param("x")Long offerId);
 	
-	@Query("select t from Trade t where t.recipientOfferId = :x")
-	public List<Trade> findTradeProposal(@Param("x")Long offerId);
+	@Query("select t from Trade t where t.recipientOfferId = :x and t.validate=false")
+	public List<Trade> findPendingTradeProposal(@Param("x")Long offerId);
 	
-	@Query("select t from Trade t where t.senderOfferId = :x")
-	public List<Trade> findTradeProposed(@Param("x")Long offerId);
+	@Query("select t from Trade t where t.senderOfferId = :x and t.validate=false")
+	public List<Trade> findPendingTradeProposed(@Param("x")Long offerId);
+	
+	@Query("select t from Trade t where t.senderOfferId = :x and t.recipientOfferId = :y")
+	public Trade findBySenderAndRecipientOffers(@Param("x")Long senderOfferId,@Param("y")Long recipientOfferId);
+	
+	@Query("select t from Trade t where (t.senderOfferId = :x or t.recipientOfferId = :x) and t.validate=true")
+	public Trade findAcceptedOffer(@Param("x")Long offerId);
 
 }

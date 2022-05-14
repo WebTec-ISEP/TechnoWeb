@@ -12,8 +12,10 @@ public class Trade {
 	@Column(length=100)
 	private Long senderOfferId;
 	private Long recipientOfferId;
+	private boolean validate;
 	
 	public Trade(Long senderOffer, Long recipientOffer){
+		setValidate(false);
 		this.setSenderOffer(senderOffer);
 		this.setRecipientOffer(recipientOffer);
 	}
@@ -36,6 +38,14 @@ public class Trade {
 
 	public void setRecipientOffer(Long recipientOffer) {
 		this.recipientOfferId = recipientOffer;
+	}
+
+	public boolean isValidate() {
+		return validate;
+	}
+
+	public void setValidate(boolean validate) {
+		this.validate = validate;
 	}
 
 
