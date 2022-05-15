@@ -1,19 +1,16 @@
 package org.techweb.web;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,6 +80,32 @@ public class OfferManagementController {
 			@RequestParam(name = "offerLocation", defaultValue = "") String offerLocation,
 			@RequestParam(name = "offerDuration", defaultValue = "") Long offerDuration,
 			@RequestParam(name = "offerDescription", defaultValue = "") String offerDescription) {
+		
+		Optional<Offer> currentOffer = offerDao.findById(idOffer);
+		if(currentOffer.isPresent()) {
+			Offer getOffer = currentOffer.get();
+			model.addAttribute("offer", getOffer);
+			
+			// make a string blob out of the values to be checked to then use jsp contains api
+			List<String> checkList = new ArrayList<String>();
+			checkList.addAll(Arrays.asList(getOffer.getEquipments()));
+			checkList.addAll(Arrays.asList(getOffer.getServices()));
+			checkList.addAll(Arrays.asList(getOffer.getConstraints()));
+			model.addAttribute("checkList", checkList.toString());
+			
+			List<Image> images = imageDao.findByOfferId(idOffer);
+			List<String> imagesBase64String = new ArrayList<String>();
+			for(Image image:images) {
+				byte[] imageInBytes = image.getImage();
+				String base64String = Base64.getEncoder().encodeToString(imageInBytes);
+				System.out.println(base64String);
+				imagesBase64String.add(base64String);
+			}
+			for(String s : getOffer.getEquipments()) {
+				System.out.println("\n"+s+" ");
+			}
+		}
+		
 		if (!(offerName.equals(""))) {
 			Offer offer = offerDao.getById(idOffer);
 			offer.setName(offerName);
