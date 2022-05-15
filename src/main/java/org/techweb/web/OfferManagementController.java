@@ -46,6 +46,9 @@ public class OfferManagementController {
 			HttpServletRequest request,
 			HttpSession session) {
 		if (!(offerName.equals(""))) {
+			String[] equipments = request.getParameterValues("equipments");
+			String[] services = request.getParameterValues("services");
+			String[] constraints = request.getParameterValues("constraints");
 			String owner = (String)session.getAttribute("name");
 			Offer offer = new Offer();
 			offer.setName(offerName);
@@ -53,10 +56,10 @@ public class OfferManagementController {
 			offer.setDuration(offerDuration);
 			offer.setDescription(offerDescription);
 			offer.setOwner(owner);
-			
-			String[] equipments = request.getParameterValues("equipments");
-			String[] services = request.getParameterValues("services");
-			String[] constraints = request.getParameterValues("constraints");
+			offer.setEquipments(equipments);
+			offer.setServices(services);
+			offer.setConstraints(constraints);
+		
 			
 			offerDao.save(offer);
 			

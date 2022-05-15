@@ -20,14 +20,29 @@
 			<th>Name</th>
 			<th>Location</th>
 			<th>Description</th>
+			<th>Equipments</th>
+			<th>Services</th>
+			<th>Constraints</th>
 		</tr>
 		<tr>
 			<td>${offer.idOffer}</td>
 			<td>${offer.name}</td>
 			<td>${offer.location}</td>
 			<td>${offer.description}</td>
+			<td><c:forEach items="${offer.equipments}" var="e">
+				<p>${e}</p>
+			</c:forEach></td>
+			<td><c:forEach items="${offer.services}" var="s">
+				<p>${s}</p>
+			</c:forEach></td>
+			<td><c:forEach items="${offer.constraints}" var="c">
+				<p>${c}</p>
+			</c:forEach></td>
 		</tr>
 	</table>
+	<c:forEach items="${images}" var="i">
+		<img src="data:image/jpg;base64,${i}"/>
+	</c:forEach>
 	<c:if test = "${offersProposal != null and offersProposal.size() != 0}">
 		<form action="/respond">
 			<!-- <input type="hidden" name="idOffer" value="${offer.idOffer}"/> -->
@@ -38,6 +53,7 @@
 					<th>Name</th>
 					<th>Location</th>
 					<th>Description</th>
+					<th>Owner</th>
 				</tr>
 				<c:forEach items="${offersProposal}" var="o">
 					<tr>
@@ -45,6 +61,7 @@
 						<td>${o.name}</td>
 						<td>${o.location}</td>
 						<td>${o.description}</td>
+						<td><a href="/profil?ref=${o.idOffer}&name=${o.owner}">${o.owner}</a></td>
 						<td><button type="submit" name="accept" value="${o.idOffer}">Accept</button></td>
 						<td><button type="submit" name="refuse" value="${o.idOffer}">Refuse</button></td>
 						<td><a href="/detail?ref=${o.idOffer}&previous=${offer.idOffer}">Detail</a></td>
@@ -61,6 +78,7 @@
 				<th>Name</th>
 				<th>Location</th>
 				<th>Description</th>
+				<th>Owner</th>
 			</tr>
 			<c:forEach items="${offersProposed}" var="o">
 				<tr>
@@ -68,6 +86,7 @@
 					<td>${o.name}</td>
 					<td>${o.location}</td>
 					<td>${o.description}</td>
+					<td><a href="/profil?ref=${o.idOffer}&name=${o.owner}">${o.owner}</a></td>
 					<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 				</tr>
 			</c:forEach>

@@ -16,14 +16,20 @@ public class Offer {
 	private String description;
 	private String owner;
 	private boolean validate;
+	private String[] equipments;
+	private String[] services;
+	private String[] constraints;
 	
-	public Offer(String name, String location, long duration, String description, String owner) {
+	public Offer(String name, String location, long duration, String description, String owner, String[] equipments, String[] services, String[] constraints) {
 		setValidate(false);
 		this.setName(name);
 		this.setLocation(location);
 		this.setDuration(duration);
 		this.setDescription(description);
 		this.setOwner(owner);
+		this.setEquipments(equipments);
+		this.setServices(services);
+		this.setConstraints(constraints);
 	}
 	
 	public Offer(){
@@ -84,5 +90,29 @@ public class Offer {
 
 	public void setValidate(boolean validate) {
 		this.validate = validate;
+	}
+
+	public String[] getEquipments() {
+		return equipments;
+	}
+
+	public void setEquipments(String[] equipments) {
+		this.equipments = equipments;
+	}
+
+	public String[] getServices() {
+		return services;
+	}
+
+	public void setServices(String[] services) {
+		this.services = services;
+	}
+
+	public String[] getConstraints() {
+		return constraints;
+	}
+
+	public void setConstraints(String[] constraints) {
+		this.constraints = constraints;
 	}
 }

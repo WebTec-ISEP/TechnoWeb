@@ -16,6 +16,9 @@
 			<th>Location</th>
 			<th>Description</th>
 			<th>Owner</th>
+			<th>Equipments</th>
+			<th>Services</th>
+			<th>Constraints</th>
 		</tr>
 		<tr>
 			<td>${offer.idOffer}</td>
@@ -23,6 +26,15 @@
 			<td>${offer.location}</td>
 			<td>${offer.description}</td>
 			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
+			<td><c:forEach items="${offer.equipments}" var="e">
+				<p>${e}</p>
+			</c:forEach></td>
+			<td><c:forEach items="${offer.services}" var="s">
+				<p>${s}</p>
+			</c:forEach></td>
+			<td><c:forEach items="${offer.constraints}" var="c">
+				<p>${c}</p>
+			</c:forEach></td>
 		</tr>
 		<tr>
 			<td><a href="/trade?ref=${offer.idOffer}">Trade</a></td>
