@@ -101,9 +101,6 @@ public class OfferManagementController {
 				System.out.println(base64String);
 				imagesBase64String.add(base64String);
 			}
-			for(String s : getOffer.getEquipments()) {
-				System.out.println("\n"+s+" ");
-			}
 		}
 		
 		if (!(offerName.equals(""))) {
