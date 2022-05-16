@@ -1,0 +1,65 @@
+@charset "ISO-8859-1";
+
+.navigationBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navigationBar li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+.navigationBar li:last-child {
+	border-left: 1px solid #bbb;
+  	border-right: none;
+}
+
+.navigationBar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navigationBar li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.navigationBar form {
+	color: white;
+}
+
+
+.navigationBar form #login{
+	background-color: #333;
+	display: block;
+  	color: white;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+  	border:none;
+  	width:50%;
+  	float:left;
+  	border-top: 1px solid #bbb;
+}
+
+.navigationBar form #login:hover{
+	background-color: #111;
+}
+
+.navigationBar #register{
+	border-top: 1px solid #bbb;
+	border-left: 1px solid #bbb;
+	float:left;
+	width:49%;
+	padding: 14px 0px;
+}
+
+.active {
+  background-color: #04AA6D;
+}

@@ -20,26 +20,29 @@
 	</script>
 </head>
 <body>
-	<div class="login">
-		<form action="/personalSpace" method="post">
-			<table>
-				<tr>
-					<td>Login</td>
-					<td><input type="text" name="name" /></td>
-				</tr>
-				<tr>
-					<td>Password</td>
-					<td><input type="password" name="password" /></td>
-				</tr>
-				<tr>
-					<td><input type="submit" name="action" value="login" /></td>
-				</tr>
-			</table>
-		</form>
-		<a href="/register" class = "register">sign up</a>
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/personalSpace" class = "personalSpace">Personal space</a></li>
+			<li><a class="active" href="#home">Home</a></li>
+			<li style="float:right"><a href="/logout" class = "logout">log out</a></li>
+			<li style="float:right">
+				<form action="/personalSpace" method="post">
+					<table>
+						<tr>
+							<td>Login</td>
+							<td><input type="text" name="name" /></td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td><input type="password" name="password" /></td>
+						</tr>
+					</table>
+					<input type="submit" name="action" value="login" id="login"/>
+				</form>
+				<a href="/register" class = "register" id="register">sign up</a>
+			</li>
+		</ul>
 	</div>
-	<a href="/logout" class = "logout">log out</a>
-	<a href="/personalSpace" class = "personalSpace">Personal space</a>
 	<form action="/home" method="post">
 			<table>
 				<tr>
