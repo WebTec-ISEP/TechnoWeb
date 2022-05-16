@@ -8,9 +8,13 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 </head>
 <body>
-	<div> 
-		<a href="/home">home</a> 
-		<a href="/messaging">messages</a>
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/home">Home</a></li>
+			<li><a class="active" href="#personalSpace">Personal space</a></li>
+			<li><a href="/messaging">Messages</a></li>
+			<li style="float:right"><a href="/logout">log out</a></li>
+		</ul>
 	</div>
     
     <table class="tabOffers">

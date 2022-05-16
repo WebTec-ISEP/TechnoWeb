@@ -38,8 +38,13 @@
 	</script>
 </head>
 <body>
-	<div> 
-		<a href="/personalSpace">back</a> 
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/home">Home</a></li>
+			<li><a href="/personalSpace">Personal space</a></li>
+			<li><a class="active" href="#messaging">Messages</a></li>
+			<li style="float:right"><a href="/logout">log out</a></li>
+		</ul>
 	</div>
     
 	<select name="item" id="selectContact" onchange="updated()">

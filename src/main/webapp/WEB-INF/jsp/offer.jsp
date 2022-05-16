@@ -8,7 +8,15 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 </head>
 <body>
-	<a href="/home">Back</a> 
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/home">Home</a></li>
+			<li><a href="/personalSpace">Personal space</a></li>
+			<li><a href="/messaging">Messages</a></li>
+			<li style="float:right"><a href="/logout">log out</a></li>
+		</ul>
+	</div>
+	
 	<table>
 		<tr>
 			<th>REF</th>

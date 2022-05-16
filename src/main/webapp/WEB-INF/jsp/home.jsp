@@ -10,11 +10,9 @@
 	<script>
 		$(document).ready(function(){
 			if(${connected}==1){
-				$('.login').hide();
-				$('.register').hide();
+				$('.notLogged').hide();
 			} else {
-				$('.logout').hide();
-				$('.personalSpace').hide();
+				$('.logged').hide();
 			}
 		});
 	</script>
@@ -22,11 +20,12 @@
 <body>
 	<div class="navigationBar">
 		<ul>
-			<li><a href="/personalSpace" class = "personalSpace">Personal space</a></li>
 			<li><a class="active" href="#home">Home</a></li>
-			<li style="float:right"><a href="/logout" class = "logout">log out</a></li>
+			<li class = "logged"><a href="/personalSpace">Personal space</a></li>
+			<li><a class = "logged" href="/messaging">Messages</a></li>
+			<li class = "logged" style="float:right"><a href="/logout">log out</a></li>
 			<li style="float:right">
-				<form action="/personalSpace" method="post">
+				<form class ="notLogged" action="/personalSpace" method="post">
 					<table>
 						<tr>
 							<td>Login</td>
@@ -39,29 +38,31 @@
 					</table>
 					<input type="submit" name="action" value="login" id="login"/>
 				</form>
-				<a href="/register" class = "register" id="register">sign up</a>
+				<a class = "notLogged" href="/register" id="register">sign up</a>
 			</li>
 		</ul>
 	</div>
-	<form action="/home" method="post">
-			<table>
-				<tr>
-					<td><input type="text" name="motCle" placeholder="search..."/></td>
-					<td><input type="submit" name="action" value="search" /></td>
-				</tr>
-			</table>
+	
+	<form class="searchBar" action="/home" method="post">
+		<table>
+			<tr>
+				<td><input type="text" name="motCle" placeholder="search..."/></td>
+				<td><input type="submit" name="action" value="search" /></td>
+			</tr>
+		</table>
 	</form>
     
-    <table class="taboffers">
+    <table class="tabOffers">
 			<tr>
-				<th>REF</th>
+				<th></th>
 				<th>Name</th>
+				<th>Location</th>
 			</tr>
-			<c:forEach items="${offers}" var="o">
+			<c:forEach items="${offers}" var="o" varStatus="loop">
 			<tr>
-				<td>${o.idOffer}</td>
-				<td>${o.name}</td>
-				<td><a href="/offer?ref=${o.idOffer}">Details</a></td>
+				<td width="384" height="216"><a href="/offer?ref=${o.idOffer}"><img src="data:image/jpg;base64,${images[loop.index]}" width="384" height="216"/></a></td>
+				<td><a href="/offer?ref=${o.idOffer}"><div style="height:216px;width:100%">${o.name}</div></a></td>
+				<td><a href="/offer?ref=${o.idOffer}"><div style="height:216px;width:100%">${o.location}</div></a></td>
 			</tr>
 
 			</c:forEach>

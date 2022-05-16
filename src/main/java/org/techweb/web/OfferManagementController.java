@@ -97,6 +97,7 @@ public class OfferManagementController {
 			List<String> imagesBase64String = new ArrayList<String>();
 			for(Image image:images) {
 				byte[] imageInBytes = image.getImage();
+				System.out.println(Arrays.toString(imageInBytes));
 				String base64String = Base64.getEncoder().encodeToString(imageInBytes);
 				System.out.println(base64String);
 				imagesBase64String.add(base64String);

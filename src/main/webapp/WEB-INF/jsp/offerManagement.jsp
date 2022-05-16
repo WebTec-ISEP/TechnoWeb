@@ -13,6 +13,14 @@ pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <body>
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/home">Home</a></li>
+			<li><a href="/personalSpace">Personal space</a></li>
+			<li><a href="/messaging">Messages</a></li>
+			<li style="float:right"><a href="/logout">log out</a></li>
+		</ul>
+	</div>
 	<div>
 		<a href="/personalSpace">Back</a>
 		<form action="/addOffer/submit" method="post" enctype="multipart/form-data">
