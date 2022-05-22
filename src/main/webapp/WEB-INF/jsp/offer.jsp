@@ -17,7 +17,7 @@
 		</ul>
 	</div>
 	
-	<table>
+	<table class="tabOffers">
 		<tr>
 			<th>REF</th>
 			<th>Name</th>

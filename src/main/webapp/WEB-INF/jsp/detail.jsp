@@ -22,7 +22,7 @@
 	<c:if test = "${previous == null}">
 		<a href="/personalSpace">Back</a>
 	</c:if>
-	<table>
+	<table class="tabOffers">
 		<tr>
 			<th>REF</th>
 			<th>Name</th>
@@ -54,7 +54,7 @@
 	<c:if test = "${offersProposal != null and offersProposal.size() != 0}">
 		<form action="/respond">
 			<!-- <input type="hidden" name="idOffer" value="${offer.idOffer}"/> -->
-			<table class="tabOffersProposal">
+			<table class="tabOffers">
 		    	<caption>Offers proposal</caption>
 				<tr>
 					<th>REF</th>
@@ -79,7 +79,7 @@
 		</form>
 	</c:if>
 	<c:if test = "${offersProposed != null and offersProposed.size() != 0}">	
-		<table class="tabOffersProposed">
+		<table class="tabOffers">
 	    	<caption>Offers proposed</caption>
 			<tr>
 				<th>REF</th>

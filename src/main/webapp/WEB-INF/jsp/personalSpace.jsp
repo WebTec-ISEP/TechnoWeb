@@ -6,6 +6,14 @@
 	<meta charset="utf-8">
 	<title>Personal space</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			if(${acceptedOffers.size()}==0){
+				$('#accepted').hide();
+			}
+		});
+	</script>
 </head>
 <body>
 	<div class="navigationBar">
@@ -22,6 +30,9 @@
 		<tr>
 			<th>REF</th>
 			<th>Name</th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
 		<c:forEach items="${offers}" var="o">
 			<tr>
@@ -35,11 +46,12 @@
 		<tr><td><a href="/addOffer">Add</a></td></tr>
 	</table>
 	
-	<table class="tabAcceptedOffers">
+	<table class="tabOffers" id="accepted">
     	<caption>Accepted Offers</caption>
 		<tr>
 			<th>REF</th>
 			<th>Name</th>
+			<th></th>
 		</tr>
 		<c:forEach items="${acceptedOffers}" var="o">
 			<tr>

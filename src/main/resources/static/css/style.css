@@ -1,5 +1,15 @@
 @charset "ISO-8859-1";
-
+body{
+	margin:0;
+	padding-top:100px;
+	
+}
+.navigationBar {
+	overflow: hidden;
+	position: fixed; 
+  	top: 0; 
+  	width:100%;
+}
 .navigationBar ul {
 	list-style-type: none;
 	margin: 0;
@@ -82,10 +92,12 @@
 .tabOffers {
 	border-collapse: collapse;
 	width: 100%;
+	text-align: center;
+	overflow-x:auto;
+	table-layout:auto;
 }
 
 .tabOffers th, .tabOffers td {
-	text-align: left;
 	padding: 8px;
 }
 
@@ -101,3 +113,47 @@
 .tabOffers td a {
 	text-decoration:none;
 }
+
+.tabOffers caption {
+	padding: 8px;
+	color:#04AA6D;
+}
+
+.sendMessage{
+	position: fixed; 
+  	bottom: 0; 
+  	margin-left:25%;
+  	width:65%;
+  	display:flex;
+}
+
+.sendMessage input[type="text"]{
+	font-size:30px;
+  	width:100%;
+}
+
+.sendMessage input[type="submit"]{
+	font-size:30px;
+}
+
+.selectContact{
+	overflow:hidden;
+	font-size:30px;
+	width:100%;
+	border:none;
+}
+
+.selectContactDiv{
+	width:20%;
+	height:100%;
+	border:none;
+	background-color:grey;
+	float:left;
+	position:fixed;
+}
+
+.conv{
+	margin-left:25%;
+	font-size:30px;
+}
+

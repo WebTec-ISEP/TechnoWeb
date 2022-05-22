@@ -46,36 +46,29 @@
 			<li style="float:right"><a href="/logout">log out</a></li>
 		</ul>
 	</div>
-    
-	<select name="item" id="selectContact" onchange="updated()">
-		<c:forEach items="${messages.keySet()}" var="contact">
-			<option>${contact}</option>
-		</c:forEach>
-	</select>
+    <div class="selectContactDiv">
+		<select name="item" class="selectContact" id="selectContact" onchange="updated()" size="${messages.keySet().size()}">
+			<c:forEach items="${messages.keySet()}" var="contact">
+				<option>${contact}</option>
+			</c:forEach>
+		</select>
+	</div>
 	
-	<table class="tabMessage">
-		<% Map<String,List<Message>> messages = (Map<String,List<Message>>)request.getAttribute("messages"); %>
-		<c:forEach items="${messages.keySet()}" var="contact">
-			<div class="conv" id="${contact}">${contact}<br>
-			<% String contact = (String)pageContext.getAttribute("contact");
-				List<Message> messagesList = messages.get(contact);
-				for(Message message:messagesList){%>
-				<p>
-					<%out.print(message.getSender()+" : "+message.getContent());%>
-				</p>
-				<%}%>
-			</div>
-		</c:forEach>
-	</table>
+	<% Map<String,List<Message>> messages = (Map<String,List<Message>>)request.getAttribute("messages"); %>
+	<c:forEach items="${messages.keySet()}" var="contact">
+		<div class="conv" id="${contact}">
+		<% String contact = (String)pageContext.getAttribute("contact");
+			List<Message> messagesList = messages.get(contact);
+			for(Message message:messagesList){%>
+			<p><%out.print(message.getSender()+" : "+message.getContent());%></p>
+		<%}%>
+		</div>
+	</c:forEach>
 	
-	<form action="/messaging" method="post" name="sendMessage">
-			<table>
-				<tr>
-					<td><input type="text" name="message" placeholder="message..."/></td>
-					<td><input type="hidden" name="recipient" id="recipient" value="no"/></td>
-					<td><input type="submit" name="action" value="send"/></td>
-				</tr>
-			</table>
+	<form action="/messaging" method="post" name="sendMessage" class="sendMessage">
+		<input type="text" name="message" placeholder="message..."/>
+		<input type="hidden" name="recipient" id="recipient" value="no"/>
+		<input type="submit" name="action" value="send"/>
 	</form>
 </body>
 </html>
