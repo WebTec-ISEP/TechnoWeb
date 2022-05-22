@@ -22,66 +22,68 @@ pageEncoding="utf-8"%>
 		</ul>
 	</div>
 	<div>
-		<a href="/personalSpace">Back</a>
-		<form action="/addOffer/submit" method="post" enctype="multipart/form-data">
-			<table>
-				<tr>
-					<td>Name</td>
-					<td><input type="text" name="offerName" value = "${offer.name}"/></td>
-				</tr>
-				<tr>
-					<td>Location</td>
-					<td><input type="text" name="offerLocation" value = "${offer.location}" /></td>
-				</tr>
-				<tr>
-					<td>Duration</td>
-					<td><input type="text" name="offerDuration" value = "${offer.duration}" /></td>
-				</tr>
-				<tr>
-					<td>Description</td>
-					<td><textarea name="offerDescription"/>${offer.description}</textarea></td>
-				</tr>
-				<tr>
-					<td>Images</td>
-					<td><input type="file" name="offerImages" accept="image/png, image/jpeg" multiple></td>
-				</tr>
-			</table>
+		<form action="/addOffer/submit" method="post" enctype="multipart/form-data" class="offerForm">
 			<fieldset>
-			    <legend>Equipements</legend>
+				<legend>House info</legend>
+				<table>
+					<tr>
+						<td><label>Name</label></td>
+						<td><input type="text" name="offerName" value = "${offer.name}"/></td>
+					</tr>
+					<tr>
+						<td><label>Location</label></td>
+						<td><input type="text" name="offerLocation" value = "${offer.location}" /></td>
+					</tr>
+					<tr>
+						<td><label>Duration</label></td>
+						<td><input type="text" name="offerDuration" value = "${offer.duration}" /></td>
+					</tr>
+					<tr>
+						<td><label>Description</label></td>
+						<td><textarea name="offerDescription">${offer.description}</textarea></td>
+					</tr>
+					<tr>
+						<td><label>Images</label></td>
+						<td><input type="file" name="offerImages" accept="image/png, image/jpeg" multiple></td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset>
+			    <legend>Equipments</legend>
 			
 			    <div>
 			      <input type="checkbox" name="equipments" value="shower" <c:if test="${fn:contains(checkList, 'shower')}">checked</c:if>>
-				  <label>Douche</label>
+				  <label>Shower</label>
 			    </div>
 			
 			    <div>
 			      <input type="checkbox" name="equipments" value="bath" <c:if test="${fn:contains(checkList, 'bath')}">checked</c:if>>
-			      <label>Baignoire</label>
+			      <label>Bath</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="equipments" value="hoven" <c:if test="${fn:contains(checkList, 'hoven')}">checked</c:if>>
-			      <label>Four</label>
+			      <label>Hoven</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="equipments" value="microwave" <c:if test="${fn:contains(checkList, 'microWave')}">checked</c:if>>
-			      <label>Micro-onde</label>
+			      <label>MicroWave</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="equipments" value ="coffeeMachine" <c:if test="${fn:contains(checkList, 'coffeeMachine')}">checked</c:if>>
-			      <label>Machine à café</label>
+			      <label>Coffee machine</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="equipments" value ="vacuum" <c:if test="${fn:contains(checkList, 'vacuum')}">checked</c:if>>
-			      <label>Aspirateur</label>
+			      <label>Vacuum</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="equipments" value ="TV" <c:if test="${fn:contains(checkList, 'TV')}">checked</c:if>>
-			      <label>Télévision</label>
+			      <label>TV</label>
 			    </div>
 			    
 			    <div>
@@ -94,7 +96,7 @@ pageEncoding="utf-8"%>
 			
 			    <div>
 			      <input type="checkbox" name="services" value="water" <c:if test="${fn:contains(checkList, 'water')}">checked</c:if>>
-			      <label>Arroser les plantes</label>
+			      <label>Water plants</label>
 			    </div>
 			    
 			    <div>
@@ -113,29 +115,28 @@ pageEncoding="utf-8"%>
 			
 			    <div>
 			      <input type="checkbox" name="constraints" value="smoking" <c:if test="${fn:contains(checkList, 'smoking')}">checked</c:if>>
-			      <label>Interdiction de fumer</label>
+			      <label>No smoking</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="constraints" value="noise" <c:if test="${fn:contains(checkList, 'noise')}">checked</c:if>>
-			      <label>Pas de bruit après 23h</label>
+			      <label>No noise after 11pm</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="constraints" value="pets" <c:if test="${fn:contains(checkList, 'pets')}">checked</c:if>>
-			      <label>Pas d'animaux</label>
+			      <label>No pets</label>
 			    </div>
 			    
 			    <div>
 			      <input type="checkbox" name="constraints" value="children" <c:if test="${fn:contains(checkList, 'children')}">checked</c:if>>
-			      <label>Pas d'enfants</label>
+			      <label>No children</label>
 			    </div>
 			    
 			    
 			</fieldset>
 			<input type="submit" name="action" value="save" />
 		</form>
-		<div> <a href="/personalSpace">back</a> </div>
 	</div>
 </body>
 </html>

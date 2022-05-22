@@ -46,6 +46,15 @@ public class TechnoWebApp {
 		messageDao.save(new Message(user2.getName(),user1.getName(),124,"hello world 2"));
 		messageDao.save(new Message(user3.getName(),user1.getName(),124,"hello world 2"));
 		messageDao.save(new Message(user3.getName(),user1.getName(),125,"hello world 3"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),126,"hello world 4"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),127,"hello world 5"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),128,"hello world 6"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),129,"hello world 7"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),130,"hello world 8"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),131,"hello world 9"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),132,"hello world, what's up bro, i want to send you a very long message!"));
+		messageDao.save(new Message(user1.getName(),user3.getName(),133,"bye"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),134,"bye"));
 	}
 
 }

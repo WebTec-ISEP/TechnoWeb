@@ -14,10 +14,13 @@
 			var selector = document.getElementById("selectContact");
 			if('${select}'!=""){
 				setOption(selector,'${select}');
+			} else {
+				setOption(selector,'${messages.keySet().toArray()[0]}');
 			}
 			$('.conv').hide();
 			$('#'+selector.value).show();
 			$('#recipient').val(selector.value);
+			$(document).scrollTop($(document).height());
 		});
 
 		function updated(){
@@ -25,6 +28,7 @@
 			$('#recipient').val(selector.value);
 		    $('.conv').hide();
 		    $('#'+selector.value).show();
+		    $(document).scrollTop($(document).height());
 		}
 		
 		function setOption(selectElement, value) {
