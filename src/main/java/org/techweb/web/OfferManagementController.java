@@ -84,6 +84,7 @@ public class OfferManagementController {
 		Optional<Offer> currentOffer = offerDao.findById(idOffer);
 		if(currentOffer.isPresent()) {
 			Offer getOffer = currentOffer.get();
+			System.out.println("============================="+getOffer.getTags());
 			model.addAttribute("offer", getOffer);
 			
 			// make a string blob out of the values to be checked to then use jsp contains api

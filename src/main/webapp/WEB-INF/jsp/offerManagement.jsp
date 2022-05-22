@@ -57,7 +57,7 @@ pageEncoding="utf-8"%>
 			    </div>
 			    
 			    <div>
-			      <input type="checkbox" name="equipments" value="microwave" <c:if test="${fn:contains(checkList, 'microWave')}">checked</c:if>>
+			      <input type="checkbox" name="equipments" value="microwave" <c:if test="${fn:contains(checkList, 'microwave')}">checked</c:if>>
 			      <label>Micro-onde</label>
 			    </div>
 			    
