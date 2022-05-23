@@ -2,6 +2,8 @@ package org.techweb.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,20 +26,23 @@ public class HomeController {
 	private TagRepository tagDao;
 	
 	@RequestMapping(value = "/home")
-	public String home(Model model, @RequestParam(name = "motCle", defaultValue = "") String mc, HttpSession session) {
+	public String home(Model model, @RequestParam(name = "motCle", defaultValue = "") String mc,@RequestParam(name = "tags", defaultValue = "") List<String> tags, HttpSession session) {
 		String userName = (String)session.getAttribute("name");
 		if(userName == null) {
 			model.addAttribute("connected", "0");
 		} else {
 			model.addAttribute("connected", "1");
 		}
-		List<Offer> offers = offerDao.findByName("%" + mc + "%");
+		List<Offer> offers = new ArrayList<>();
 		
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("microwave");
-		list.add("bath");
-		List<Offer> offersid = tagDao.findOffersMatchingTags(list);
-		System.out.println(offersid);
+		if(tags.size()>0) offers.addAll(removeOffersNotMatchingAllTags(tagDao.findOffersMatchingTags(tags), tags.size()));
+		if(!mc.equals("")) offers.addAll(offerDao.findByName("%" + mc + "%")); 
+		
+		
+		offers = removeDuplicates(offers);
+		
+		System.out.println(offers);
+		
 		model.addAttribute("offers", offers);
 		model.addAttribute("motC", mc);
 		return("home");
@@ -52,5 +57,29 @@ public class HomeController {
 	    request.setAttribute("connected", "0");
 	    return "redirect:/home"; 
 	}
+	
+	public static <T> ArrayList<Offer> removeOffersNotMatchingAllTags(List<Offer> offers,int i)
+    {
+		Map<Offer, Long> counts = 
+				offers.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+		for(Offer offerKey : counts.keySet()) {
+			if(counts.get(offerKey)<i) {
+				counts.remove(offerKey);
+			}
+		}
+		return new ArrayList<Offer>(counts.keySet());
+    }
+	
+	public static <T> List<T> removeDuplicates(List<T> list)
+    {
+        ArrayList<T> newList = new ArrayList<T>();
+          for (T element : list) {
+            if (!newList.contains(element)) {
+  
+                newList.add(element);
+            }
+        }
+        return newList;
+    }
 	
 }
