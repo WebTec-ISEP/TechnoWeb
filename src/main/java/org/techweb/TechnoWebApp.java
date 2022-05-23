@@ -42,8 +42,9 @@ public class TechnoWebApp {
 		offerDao.findAll().forEach(o->System.out.println(o.getName()));
 		
 		try {
-			String path = "";
+			String path = "image";
 			File image1 = new File(path+"1.jpg");
+			System.out.println(image1.toString());
 			byte[] byteArrayImage1 = Files.readAllBytes(image1.toPath());
 			
 			File image2 = new File(path+"2.jpg");

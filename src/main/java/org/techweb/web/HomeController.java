@@ -2,6 +2,7 @@ package org.techweb.web;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,17 +31,33 @@ public class HomeController {
 	private TagRepository tagDao;
 	
 	@RequestMapping(value = "/home")
-	public String home(Model model, @RequestParam(name = "motCle", defaultValue = "") String mc,@RequestParam(name = "tags", defaultValue = "") List<String> tags, HttpSession session) {
+	public String home(
+			Model model,
+			@RequestParam(name = "motCle", defaultValue = "") String mc,
+			@RequestParam(name = "tags", defaultValue = "") List<String> tags,
+			HttpSession session,
+			HttpServletRequest request) {
 		String userName = (String)session.getAttribute("name");
+		String[] equipments = request.getParameterValues("equipments");
+		if(equipments!=null) Collections.addAll(tags,equipments);
+		String[] services = request.getParameterValues("services");
+		if(equipments!=null) Collections.addAll(tags,services);
+		String[] constraints = request.getParameterValues("constraints");
+		if(equipments!=null) Collections.addAll(tags,constraints);
+		
 		if(userName == null) {
 			model.addAttribute("connected", "0");
 		} else {
 			model.addAttribute("connected", "1");
 		}
 		List<Offer> offers = new ArrayList<>();
+		if(mc.equals("")||tags.size()<0) {
+			offers = offerDao.findByName("%" + mc + "%"); 
+		}
+		
 		if(tags.size()>0) offers.addAll(removeOffersNotMatchingAllTags(tagDao.findOffersMatchingTags(tags), tags.size()));
 		if(!mc.equals("")) offers.addAll(offerDao.findByName("%" + mc + "%")); 
-		List<String> imagesBase64String = new ArrayList();
+		List<String> imagesBase64String = new ArrayList<>();
 		for(Offer offer:offers) {
 			Image image = imageDao.findByOfferId(offer.getIdOffer()).get(0);
 			String base64String = Base64.getEncoder().encodeToString(image.getImage());
