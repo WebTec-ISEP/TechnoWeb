@@ -20,6 +20,7 @@ import org.techweb.dao.ImageRepository;
 import org.techweb.dao.OfferRepository;
 import org.techweb.entities.Image;
 import org.techweb.entities.Offer;
+import org.techweb.entities.Tag;
 
 @Controller
 public class OfferManagementController {
@@ -56,7 +57,19 @@ public class OfferManagementController {
 			offer.setEquipments(equipments);
 			offer.setServices(services);
 			offer.setConstraints(constraints);
-		
+			//equip
+			for(String e : equipments) {
+				offer.addTags(new Tag("equipments",e));
+			}
+			//serv
+			for(String s : services) {
+				offer.addTags(new Tag("services",s));
+			}
+			//Constraints
+			for(String c : constraints) {
+				offer.addTags(new Tag("constraints",c));
+			}
+			
 			
 			offerDao.save(offer);
 			
