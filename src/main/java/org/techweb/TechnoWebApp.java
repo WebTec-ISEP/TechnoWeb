@@ -42,7 +42,7 @@ public class TechnoWebApp {
 		offerDao.findAll().forEach(o->System.out.println(o.getName()));
 		
 		try {
-			String path = "C:\\Users\\mdedr\\Desktop\\imageTechWeb\\image";
+			String path = "";
 			File image1 = new File(path+"1.jpg");
 			byte[] byteArrayImage1 = Files.readAllBytes(image1.toPath());
 			
