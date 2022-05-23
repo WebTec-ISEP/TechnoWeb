@@ -1,5 +1,6 @@
 package org.techweb.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.techweb.dao.OfferRepository;
+import org.techweb.dao.TagRepository;
 import org.techweb.entities.Offer;
 
 @Controller
 public class HomeController {
 	@Autowired
 	private OfferRepository offerDao;
+	
+	@Autowired
+	private TagRepository tagDao;
 	
 	@RequestMapping(value = "/home")
 	public String home(Model model, @RequestParam(name = "motCle", defaultValue = "") String mc, HttpSession session) {
@@ -27,6 +32,12 @@ public class HomeController {
 			model.addAttribute("connected", "1");
 		}
 		List<Offer> offers = offerDao.findByName("%" + mc + "%");
+		
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("microwave");
+		list.add("bath");
+		List<Offer> offersid = tagDao.findOffersMatchingTags(list);
+		System.out.println(offersid);
 		model.addAttribute("offers", offers);
 		model.addAttribute("motC", mc);
 		return("home");
