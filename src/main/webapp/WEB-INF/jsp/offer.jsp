@@ -6,14 +6,25 @@
 	<meta charset="utf-8">
 	<title>Offer</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			if(${connected}==1){
+				$('.notLogged').hide();
+			} else {
+				$('.logged').hide();
+				$('.linkButton').hide();
+			}
+		});
+	</script>
 </head>
 <body>
 	<div class="navigationBar">
 		<ul>
 			<li><a href="/home">Home</a></li>
-			<li><a href="/personalSpace">Personal space</a></li>
-			<li><a href="/messaging">Messages</a></li>
-			<li style="float:right"><a href="/logout">log out</a></li>
+			<li class = "logged"><a href="/personalSpace">Personal space</a></li>
+			<li><a class = "logged" href="/messaging">Messages</a></li>
+			<li class = "logged" style="float:right"><a href="/logout">log out</a></li>
 		</ul>
 	</div>
 	

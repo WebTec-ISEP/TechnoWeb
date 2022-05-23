@@ -25,11 +25,18 @@ public class TradeController {
 	
 	@RequestMapping(value = "/trade")
 	public String trade(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer, HttpSession session) {
+		String userName = (String)session.getAttribute("name");
+		if(userName == null) {
+			model.addAttribute("connected", "0");
+		} else {
+			model.addAttribute("connected", "1");
+		}
+		
 		Optional<Offer> offer = offerDao.findById(idOffer);
 		if(offer.isPresent()) {
 			model.addAttribute("offer", offer.get());
 		}
-		String userName = (String)session.getAttribute("name");
+
 		List<Offer> offers = offerDao.findByOwnerAndValidation(userName,false);
 		model.addAttribute("offers", offers);
 		return "trade";

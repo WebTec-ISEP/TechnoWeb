@@ -8,8 +8,13 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 </head>
 <body>
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/home">Home</a></li>
+		</ul>
+	</div>
 	<div>
-		<form action="/register" method="post">
+		<form action="/register" method="post" class="offerForm">
 			<table>
 				<tr>
 					<td>Login</td>
@@ -32,7 +37,6 @@
 				</tr>
 			</table>
 		</form>
-		<div> <a href="/home">home</a> </div>
 	</div>
 </body>
 </html>
