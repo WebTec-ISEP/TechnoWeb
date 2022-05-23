@@ -48,9 +48,16 @@
 			</c:forEach></td>
 		</tr>
 	</table>
-	<c:forEach items="${images}" var="i">
-		<img src="data:image/jpg;base64,${i}"/>
-	</c:forEach>
+	<div class=slider-scroll>
+		<c:forEach items="${images}" var="i" varStatus="loop">
+			<img id="slide-scroll${loop.index+1}" src="data:image/jpg;base64,${i}">
+		</c:forEach>
+	</div>
+	<ul class="ancre">
+		<c:forEach var="i" begin="1" end="${images.size()}" step="1">
+			<li><a href="#slide-scroll${i}">${i}</a></li>
+		</c:forEach>
+	</ul>
 	<c:if test = "${offersProposal != null and offersProposal.size() != 0}">
 		<form action="/respond">
 			<!-- <input type="hidden" name="idOffer" value="${offer.idOffer}"/> -->

@@ -53,6 +53,6 @@
 			<li><a href="#slide-scroll${i}">${i}</a></li>
 		</c:forEach>
 	</ul>
-	<a href="/trade?ref=${offer.idOffer}">Trade</a>
+	<a class="linkButton" href="/trade?ref=${offer.idOffer}">Trade</a>
 </body>
 </html>
