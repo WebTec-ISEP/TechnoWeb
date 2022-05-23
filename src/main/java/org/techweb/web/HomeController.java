@@ -51,7 +51,7 @@ public class HomeController {
 			model.addAttribute("connected", "1");
 		}
 		List<Offer> offers = new ArrayList<>();
-		if(mc.equals("")||tags.size()<0) {
+		if(mc.equals("")&&tags.size()<=0) {
 			offers = offerDao.findByName("%" + mc + "%"); 
 		}
 		
