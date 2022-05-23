@@ -19,7 +19,6 @@
 	
 	<table class="tabOffers">
 		<tr>
-			<th>REF</th>
 			<th>Name</th>
 			<th>Location</th>
 			<th>Description</th>
@@ -29,7 +28,6 @@
 			<th>Constraints</th>
 		</tr>
 		<tr>
-			<td>${offer.idOffer}</td>
 			<td>${offer.name}</td>
 			<td>${offer.location}</td>
 			<td>${offer.description}</td>
@@ -44,12 +42,17 @@
 				<p>${c}</p>
 			</c:forEach></td>
 		</tr>
-		<tr>
-			<td><a href="/trade?ref=${offer.idOffer}">Trade</a></td>
-		</tr>
 	</table>
-	<c:forEach items="${images}" var="i">
-		<img src="data:image/jpg;base64,${i}"/>
-	</c:forEach>
+	<div class=slider-scroll>
+		<c:forEach items="${images}" var="i" varStatus="loop">
+			<img id="slide-scroll${loop.index+1}" src="data:image/jpg;base64,${i}">
+		</c:forEach>
+	</div>
+	<ul class="ancre">
+		<c:forEach var="i" begin="1" end="${images.size()}" step="1">
+			<li><a href="#slide-scroll${i}">${i}</a></li>
+		</c:forEach>
+	</ul>
+	<a href="/trade?ref=${offer.idOffer}">Trade</a>
 </body>
 </html>

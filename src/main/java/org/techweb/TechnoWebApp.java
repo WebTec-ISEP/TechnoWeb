@@ -1,6 +1,10 @@
 package org.techweb;
 
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.Base64;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -36,10 +40,27 @@ public class TechnoWebApp {
 		offerDao.save(offer2);
 		offerDao.save(offer3);
 		offerDao.findAll().forEach(o->System.out.println(o.getName()));
-		ImageRepository imageDao = ctx.getBean(ImageRepository.class);
-		imageDao.save(new Image(new byte[100000],offer1.getIdOffer()) );
-		imageDao.save(new Image(new byte[100000],offer2.getIdOffer()));
-		imageDao.save(new Image(new byte[100000],offer3.getIdOffer()));
+		
+		try {
+			String path = "C:\\Users\\mdedr\\Desktop\\imageTechWeb\\image";
+			File image1 = new File(path+"1.jpg");
+			byte[] byteArrayImage1 = Files.readAllBytes(image1.toPath());
+			
+			File image2 = new File(path+"2.jpg");
+			byte[] byteArrayImage2 = Files.readAllBytes(image2.toPath());
+			
+			File image3 = new File(path+"3.jpg");
+			byte[] byteArrayImage3 = Files.readAllBytes(image3.toPath());
+					
+			ImageRepository imageDao = ctx.getBean(ImageRepository.class);
+			imageDao.save(new Image(byteArrayImage2,offer1.getIdOffer()));
+			imageDao.save(new Image(byteArrayImage1,offer1.getIdOffer()));
+			imageDao.save(new Image(byteArrayImage3,offer1.getIdOffer()));
+			imageDao.save(new Image(byteArrayImage1,offer2.getIdOffer()));
+			imageDao.save(new Image(byteArrayImage1,offer3.getIdOffer()));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		MessageRepository messageDao = ctx.getBean(MessageRepository.class);
 		messageDao.save(new Message(user1.getName(),user2.getName(),123,"hello world"));
 		messageDao.save(new Message(user1.getName(),user3.getName(),123,"hello world"));
