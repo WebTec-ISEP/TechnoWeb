@@ -45,6 +45,7 @@ public class Offer {
 	
 	public Offer(){
 		super();
+		this.tags = new HashSet<Tag>();
 	}
 	
 	public Long getIdOffer() {

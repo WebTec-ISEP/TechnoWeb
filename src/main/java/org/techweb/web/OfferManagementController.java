@@ -97,6 +97,7 @@ public class OfferManagementController {
 		Optional<Offer> currentOffer = offerDao.findById(idOffer);
 		if(currentOffer.isPresent()) {
 			Offer getOffer = currentOffer.get();
+			offerDao.delete(getOffer);
 			model.addAttribute("offer", getOffer);
 			
 			// make a string blob out of the values to be checked to then use jsp contains api
@@ -105,26 +106,8 @@ public class OfferManagementController {
 			checkList.addAll(Arrays.asList(getOffer.getServices()));
 			checkList.addAll(Arrays.asList(getOffer.getConstraints()));
 			model.addAttribute("checkList", checkList.toString());
-			
-			List<Image> images = imageDao.findByOfferId(idOffer);
-			List<String> imagesBase64String = new ArrayList<String>();
-			for(Image image:images) {
-				byte[] imageInBytes = image.getImage();
-				System.out.println(Arrays.toString(imageInBytes));
-				String base64String = Base64.getEncoder().encodeToString(imageInBytes);
-				System.out.println(base64String);
-				imagesBase64String.add(base64String);
-			}
 		}
 		
-		if (!(offerName.equals(""))) {
-			Offer offer = offerDao.getById(idOffer);
-			offer.setName(offerName);
-			offer.setLocation(offerLocation);
-			offer.setDuration(offerDuration);
-			offer.setDescription(offerDescription);
-			offerDao.save(offer);
-		}
 		return("offerManagement");
 	}
 
