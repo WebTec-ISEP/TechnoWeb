@@ -84,7 +84,7 @@ public class OfferManagementController {
 			}
 			
 		}
-		return ("offerManagement");
+		return ("redirect:/personalSpace");
 	}
 	
 	@RequestMapping(value = "/edit")

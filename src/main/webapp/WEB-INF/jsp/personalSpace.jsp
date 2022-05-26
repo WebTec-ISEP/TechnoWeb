@@ -28,7 +28,6 @@
     <table class="tabOffers">
     	<caption>Vos Offres</caption>
 		<tr>
-			<th>REF</th>
 			<th>Name</th>
 			<th></th>
 			<th></th>
@@ -36,7 +35,6 @@
 		</tr>
 		<c:forEach items="${offers}" var="o">
 			<tr>
-				<td>${o.idOffer}</td>
 				<td>${o.name}</td>
 				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
 				<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
@@ -49,13 +47,11 @@
 	<table class="tabOffers" id="accepted">
     	<caption>Accepted Offers</caption>
 		<tr>
-			<th>REF</th>
 			<th>Name</th>
 			<th></th>
 		</tr>
 		<c:forEach items="${acceptedOffers}" var="o">
 			<tr>
-				<td>${o.idOffer}</td>
 				<td>${o.name}</td>
 				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 			</tr>

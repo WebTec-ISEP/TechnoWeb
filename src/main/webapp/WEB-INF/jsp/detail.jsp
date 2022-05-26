@@ -24,7 +24,6 @@
 	</c:if>
 	<table class="tabOffers">
 		<tr>
-			<th>REF</th>
 			<th>Name</th>
 			<th>Location</th>
 			<th>Description</th>
@@ -33,7 +32,6 @@
 			<th>Constraints</th>
 		</tr>
 		<tr>
-			<td>${offer.idOffer}</td>
 			<td>${offer.name}</td>
 			<td>${offer.location}</td>
 			<td>${offer.description}</td>
@@ -64,7 +62,6 @@
 			<table class="tabOffers">
 		    	<caption>Offers proposal</caption>
 				<tr>
-					<th>REF</th>
 					<th>Name</th>
 					<th>Location</th>
 					<th>Description</th>
@@ -72,7 +69,6 @@
 				</tr>
 				<c:forEach items="${offersProposal}" var="o">
 					<tr>
-						<td>${o.idOffer}</td>
 						<td>${o.name}</td>
 						<td>${o.location}</td>
 						<td>${o.description}</td>
@@ -89,7 +85,6 @@
 		<table class="tabOffers">
 	    	<caption>Offers proposed</caption>
 			<tr>
-				<th>REF</th>
 				<th>Name</th>
 				<th>Location</th>
 				<th>Description</th>
@@ -97,7 +92,6 @@
 			</tr>
 			<c:forEach items="${offersProposed}" var="o">
 				<tr>
-					<td>${o.idOffer}</td>
 					<td>${o.name}</td>
 					<td>${o.location}</td>
 					<td>${o.description}</td>
