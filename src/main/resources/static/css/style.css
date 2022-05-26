@@ -74,18 +74,34 @@ body{
 	background-color: #04AA6D;
 }
 
-.searchBar {
-	margin-top:10px;
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom:10px;
+.searchBar table{
+	text-align:center;
+	width:100%;
 }
 
-.searchBar input {
+.searchBar input[type="text"]{
 	padding: 6px;
   	border: 1px solid #ccc;  
   	font-size: 17px;
+  	width:50%;
+}
+
+.searchBar input[type="submit"]{
+	padding: 6px;
+  	border: 1px solid #ccc;  
+  	font-size: 17px;
+  	width:10%;
+  	margin-bottom:20px;
+}
+
+.searchBar fieldset{
+	text-align:left;
+  	font-size: 20px;
+  	margin:20px;
+}
+
+.searchBar fieldset div{
+	float:left;
 }
 
 .tabOffers {
@@ -276,14 +292,4 @@ border-radius: 50%;
 	font-size:30px;
 	border:none;
 	border:1px solid grey;
-}
-
-.maximosMarinos li{
-	display: inline-block;
-  	font-size: 20px;
- 	padding: 20px;
-	
-}
-.maximosMarinos{
-	height: 100%
 }

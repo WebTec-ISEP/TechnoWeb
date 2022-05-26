@@ -45,108 +45,102 @@
 			</li>
 		</ul>
 	</div>
-	<div class="maximosMarinos">
+	<div class="advancedSearch">
 		<form class="searchBar" action="/home" method="post">
 			<table>
 				<tr>
-					<ul>
-						<li>
-							<fieldset>
-								<legend>Equipments</legend>
-
-								<div>
-									<input type="checkbox" name="equipments" value="shower">
-									<label>Shower</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="equipments" value="bath">
-									<label>Bath</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="equipments" value="hoven">
-									<label>Hoven</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="equipments" value="microwave">
-									<label>MicroWave</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="equipments" value="coffeeMachine">
-									<label>Coffee machine</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="equipments" value="vacuum">
-									<label>Vacuum</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="equipments" value="TV"> <label>TV</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="equipments" value="wifi">
-									<label>Wifi</label>
-								</div>
-							</fieldset>
-						</li>
-						<li>
-							<fieldset>
-								<legend>Services</legend>
-
-								<div>
-									<input type="checkbox" name="services" value="water"> <label>Water
-										plants</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="services" value="pet"> <label>Keep
-										pet</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="services" value="clean"> <label>Clean
-										house</label>
-								</div>
-
-							</fieldset>
-						</li>
-						<li>
-							<fieldset>
-								<legend>Constraints</legend>
-
-								<div>
-									<input type="checkbox" name="constraints" value="smoking">
-									<label>No smoking</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="constraints" value="noise">
-									<label>No noise after 11pm</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="constraints" value="pets">
-									<label>No pets</label>
-								</div>
-
-								<div>
-									<input type="checkbox" name="constraints" value="children">
-									<label>No children</label>
-								</div>
-
-
-							</fieldset>
-						</li>
-					</ul>
-
-					<td><input type="text" name="motCle" placeholder="search..." /></td>
-					<td><input type="submit" name="action" value="search" /></td>
-				</tr>
+					<td><fieldset>
+						<legend>Equipments</legend>
+							<div>
+								<input type="checkbox" name="equipments" value="shower">
+								<label>Shower</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="equipments" value="bath">
+								<label>Bath</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="equipments" value="hoven">
+								<label>Hoven</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="equipments" value="microwave">
+								<label>MicroWave</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="equipments" value="coffeeMachine">
+								<label>Coffee machine</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="equipments" value="vacuum">
+								<label>Vacuum</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="equipments" value="TV"> 
+								<label>TV</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="equipments" value="wifi">
+								<label>Wifi</label>
+							</div>
+						</fieldset></td>
+		
+						<td><fieldset>
+							<legend>Services</legend>
+									
+							<div>
+								<input type="checkbox" name="services" value="water"> 
+								<label>Water plants</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="services" value="pet"> 
+								<label>Keep pet</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="services" value="clean"> 
+								<label>Clean house</label>
+							</div>
+		
+						</fieldset></td>
+						
+						<td><fieldset>
+							<legend>Constraints</legend>
+		
+							<div>
+								<input type="checkbox" name="constraints" value="smoking">
+								<label>No smoking</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="constraints" value="noise">
+								<label>No noise after 11pm</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="constraints" value="pets">
+								<label>No pets</label>
+							</div>
+		
+							<div>
+								<input type="checkbox" name="constraints" value="children">
+								<label>No children</label>
+							</div>
+		
+						</fieldset></td>
+					</tr>
+					<tr>
+						<td colspan="3"><input type="text" name="motCle" placeholder="search..." />
+						<input type="submit" name="action" value="search" /></td>
+					</tr>
 			</table>
 		</form>
 	</div>
