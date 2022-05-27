@@ -38,13 +38,14 @@
 			<th>Equipments</th>
 			<th>Services</th>
 			<th>Constraints</th>
+			<th>Rate</th>
 		</tr>
 		<tr>
-			<td>${offer.name}</td>
-			<td>${offer.location}</td>
+			<td>${house.name}</td>
+			<td>${house.location}</td>
 			<td>${offer.begin} to ${offer.end}</td>
-			<td>${offer.description}</td>
-			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
+			<td>${house.description}</td>
+			<td><a href="/profil?ref=${offer.idOffer}&name=${house.owner}">${house.owner}</a></td>
 			<td><c:forEach items="${offer.equipments}" var="e">
 				<p>${e}</p>
 			</c:forEach></td>
@@ -54,6 +55,7 @@
 			<td><c:forEach items="${offer.constraints}" var="c">
 				<p>${c}</p>
 			</c:forEach></td>
+			<td>${house.rate==-1?"unknown":house.rate}</td>
 		</tr>
 	</table>
 	<div class=slider-scroll>

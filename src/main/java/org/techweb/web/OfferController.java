@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.techweb.dao.HouseRepository;
 import org.techweb.dao.ImageRepository;
 import org.techweb.dao.OfferRepository;
+import org.techweb.entities.House;
 import org.techweb.entities.Image;
 import org.techweb.entities.Offer;
 
@@ -23,6 +25,8 @@ import org.techweb.entities.Offer;
 public class OfferController {
 	@Autowired
 	private OfferRepository offerDao;
+	@Autowired
+	private HouseRepository houseDao;
 	@Autowired
 	private ImageRepository imageDao;
 	
@@ -38,8 +42,10 @@ public class OfferController {
 		
 		Optional<Offer> offer = offerDao.findById(idOffer);
 		if(offer.isPresent()) {
+			Optional<House> house = houseDao.findById(offer.get().getHouseId());
+			model.addAttribute("house", house.get());
 			model.addAttribute("offer", offer.get());
-			List<Image> images = imageDao.findByOfferId(idOffer);
+			List<Image> images = imageDao.findByHouseId(offer.get().getHouseId());
 			List<String> imagesBase64String = new ArrayList();
 			for(Image image:images) {
 				byte[] imageInBytes = image.getImage();

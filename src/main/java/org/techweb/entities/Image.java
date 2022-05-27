@@ -1,12 +1,9 @@
 package org.techweb.entities;
 
-import java.nio.file.Files;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Image {
@@ -15,11 +12,11 @@ public class Image {
 	
 	@Column(length=500000)
 	private byte[] image;
-	private Long offerId;
+	private Long houseId;
 
-	public Image(byte[] images, Long offerId) {
+	public Image(byte[] images, Long houseId) {
 		this.setImage(images);
-		this.setOfferId(offerId);
+		this.setHouseId(houseId);
 	}
 	
 	public Image() {
@@ -37,11 +34,11 @@ public class Image {
 
 
 
-	public Long getOfferId() {
-		return offerId;
+	public Long getHouseId() {
+		return houseId;
 	}
 
-	public void setOfferId(Long offerId) {
-		this.offerId = offerId;
+	public void setHouseId(Long houseId) {
+		this.houseId = houseId;
 	}
 }

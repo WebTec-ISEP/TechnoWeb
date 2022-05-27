@@ -43,8 +43,12 @@
 			<c:forEach items="${offers}" var="o" varStatus="loop">
 			<tr>
 				<td width="384" height="216"><a href="/offer?ref=${o.idOffer}"><img src="data:image/jpg;base64,${images[loop.index]}" width="384" height="216"/></a></td>
-				<td><a href="/offer?ref=${o.idOffer}"><div style="height:216px;width:100%">${o.name}</div></a></td>
-				<td><a href="/offer?ref=${o.idOffer}"><div style="height:216px;width:100%">${o.location}</div></a></td>
+				<c:forEach items="${houses}" var="h">
+					<c:if test = "${h.idHouse == o.houseId}">
+						<td><a href="/offer?ref=${o.idOffer}"><div style="height: 216px; width: 100%">${h.name}</div></a></td>
+						<td><a href="/offer?ref=${o.idOffer}"><div style="height: 216px; width: 100%">${h.location}</div></a></td>
+					</c:if>
+				</c:forEach>
 				<td><a href="/offer?ref=${o.idOffer}"><div style="height:216px;width:100%">${o.begin} to ${o.end}</div></a></td>
 			</tr>
 

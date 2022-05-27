@@ -24,28 +24,20 @@ pageEncoding="utf-8"%>
 	<div>
 		<form action="/addOffer/submit" method="post" enctype="multipart/form-data" class="offerForm">
 			<fieldset>
-				<legend>House info</legend>
+				<legend>Offer info</legend>
 				<table>
 					<tr>
-						<td><label>Name</label></td>
-						<td><input type="text" name="offerName" value = "${offer.name}"/></td>
-					</tr>
-					<tr>
-						<td><label>Location</label></td>
-						<td><input type="text" name="offerLocation" value = "${offer.location}" /></td>
+						<td><label>House</label></td>
+						<td><select class="offerHouseId" name="offerHouseId">
+							<c:forEach items="${houses}" var="h">
+								<option value="${h.idHouse}">${h.name}</option>
+							</c:forEach>
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>Duration</label></td>
 						<td><input type="date" name="offerBegin" value = "${offer.begin}" />-
 						<input type="date" name="offerEnd" value = "${offer.end}" /></td>
-					</tr>
-					<tr>
-						<td><label>Description</label></td>
-						<td><textarea name="offerDescription">${offer.description}</textarea></td>
-					</tr>
-					<tr>
-						<td><label>Images</label></td>
-						<td><input type="file" name="offerImages" accept="image/png, image/jpeg" multiple></td>
 					</tr>
 				</table>
 			</fieldset>
@@ -136,6 +128,7 @@ pageEncoding="utf-8"%>
 			    
 			    
 			</fieldset>
+			<input type="hidden" name="offerId" value="${offer.idOffer}" />
 			<input type="submit" name="action" value="save" />
 		</form>
 	</div>

@@ -1,5 +1,6 @@
 package org.techweb.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.techweb.dao.HouseRepository;
 import org.techweb.dao.OfferRepository;
 import org.techweb.dao.TradeRepository;
+import org.techweb.entities.House;
 import org.techweb.entities.Offer;
 import org.techweb.entities.Trade;
 import org.techweb.entities.User;
@@ -22,6 +25,8 @@ public class TradeController {
 	private TradeRepository tradeDao;
 	@Autowired
 	private OfferRepository offerDao;
+	@Autowired
+	private HouseRepository houseDao;
 	
 	@RequestMapping(value = "/trade")
 	public String trade(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer, HttpSession session) {
@@ -35,9 +40,18 @@ public class TradeController {
 		Optional<Offer> offer = offerDao.findById(idOffer);
 		if(offer.isPresent()) {
 			model.addAttribute("offer", offer.get());
+			Optional<House> house = houseDao.findById(offer.get().getHouseId());
+			model.addAttribute("house", house.get());
 		}
-
-		List<Offer> offers = offerDao.findByOwnerAndValidation(userName,false);
+		
+		List<House> houses = houseDao.findByOwner(userName);
+		List<Offer> offers = new ArrayList();
+		List<Offer> validatedOffers = new ArrayList();
+		for(House house:houses) {
+			offers.addAll(offerDao.findByHouseIdAndValidation(house.getIdHouse(),false));
+			validatedOffers.addAll(offerDao.findByHouseIdAndValidation(house.getIdHouse(),true));
+		}
+		model.addAttribute("houses",houses);
 		model.addAttribute("offers", offers);
 		return "trade";
 	}

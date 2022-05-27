@@ -37,17 +37,21 @@
 			<th>Owner</th>
 		</tr>
 		<tr>
-			<td>${offer.name}</td>
-			<td>${offer.location}</td>
+			<td>${house.name}</td>
+			<td>${house.location}</td>
 			<td>${offer.begin} to ${offer.end}</td>
-			<td>${offer.description}</td>
-			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
+			<td>${house.description}</td>
+			<td><a href="/profil?ref=${offer.idOffer}&name=${house.owner}">${house.owner}</a></td>
 		</tr>
 	</table>
 	<form action="/tradeProposal" method="post" class="tradeProposal">
 		<select class="selectOffer" name="selected">
 			<c:forEach items="${offers}" var="o">
-				<option value="${o.idOffer}">${o.name}</option><a href="/detail?ref=${o.idOffer}">Detail</a>
+				<c:forEach items="${houses}" var="h">
+					<c:if test = "${h.idHouse == o.houseId}">
+						<option value="${o.idOffer}">${h.name}</option><a href="/detail?ref=${o.idOffer}">Detail</a>
+					</c:if>
+				</c:forEach>
 			</c:forEach>
 		</select>
 		<input type="hidden" name="idOffer" value="${offer.idOffer}" />

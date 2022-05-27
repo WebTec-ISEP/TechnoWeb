@@ -33,10 +33,10 @@
 			<th>Constraints</th>
 		</tr>
 		<tr>
-			<td>${offer.name}</td>
-			<td>${offer.location}</td>
+			<td>${house.name}</td>
+			<td>${house.location}</td>
 			<td>${offer.begin} to ${offer.end}</td>
-			<td>${offer.description}</td>
+			<td>${house.description}</td>
 			<td><c:forEach items="${offer.equipments}" var="e">
 				<p>${e}</p>
 			</c:forEach></td>
@@ -60,7 +60,7 @@
 	</ul>
 	<c:if test = "${offersProposal != null and offersProposal.size() != 0}">
 		<form action="/respond">
-			<!-- <input type="hidden" name="idOffer" value="${offer.idOffer}"/> -->
+			<input type="hidden" name="idOffer" value="${offer.idOffer}"/>
 			<table class="tabOffers">
 		    	<caption>Offers proposal</caption>
 				<tr>
@@ -72,14 +72,18 @@
 				</tr>
 				<c:forEach items="${offersProposal}" var="o">
 					<tr>
-						<td>${o.name}</td>
-						<td>${o.location}</td>
-						<td>${o.begin} to ${o.end}</td>
-						<td>${o.description}</td>
-						<td><a href="/profil?ref=${o.idOffer}&name=${o.owner}">${o.owner}</a></td>
-						<td><button type="submit" name="accept" value="${o.idOffer}">Accept</button></td>
-						<td><button type="submit" name="refuse" value="${o.idOffer}">Refuse</button></td>
-						<td><a href="/detail?ref=${o.idOffer}&previous=${offer.idOffer}">Detail</a></td>
+						<c:forEach items="${housesProposal}" var="h">
+							<c:if test = "${h.idHouse == o.houseId}">
+								<td>${h.name}</td>
+								<td>${h.location}</td>
+								<td>${o.begin} to ${o.end}</td>
+								<td>${h.description}</td>
+								<td><a href="/profil?ref=${o.idOffer}&name=${h.owner}">${h.owner}</a></td>
+								<td><button type="submit" name="accept" value="${o.idOffer}">Accept</button></td>
+								<td><button type="submit" name="refuse" value="${o.idOffer}">Refuse</button></td>
+								<td><a href="/detail?ref=${o.idOffer}&previous=${offer.idOffer}">Detail</a></td>
+							</c:if>
+						</c:forEach>
 					</tr>
 				</c:forEach>
 			</table>
@@ -97,12 +101,16 @@
 			</tr>
 			<c:forEach items="${offersProposed}" var="o">
 				<tr>
-					<td>${o.name}</td>
-					<td>${o.location}</td>
-					<td>${o.begin} to ${o.end}</td>
-					<td>${o.description}</td>
-					<td><a href="/profil?ref=${o.idOffer}&name=${o.owner}">${o.owner}</a></td>
-					<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
+					<c:forEach items="${housesProposed}" var="h">
+						<c:if test = "${h.idHouse == o.houseId}">
+							<td>${h.name}</td>
+							<td>${h.location}</td>
+							<td>${o.begin} to ${o.end}</td>
+							<td>${h.description}</td>
+							<td><a href="/profil?ref=${o.idOffer}&name=${h.owner}">${h.owner}</a></td>
+							<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
+						</c:if>
+					</c:forEach>
 				</tr>
 			</c:forEach>
 		</table>

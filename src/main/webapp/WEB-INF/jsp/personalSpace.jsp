@@ -24,11 +24,33 @@
 			<li style="float:right"><a href="/logout">log out</a></li>
 		</ul>
 	</div>
-    
-    <table class="tabOffers">
-    	<caption>Vos Offres</caption>
+	
+	<table class="tabOffers">
+    	<caption>Your houses</caption>
 		<tr>
 			<th>Name</th>
+			<th>Location</th>
+			<th>Description</th>
+			<th>Rate</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<c:forEach items="${houses}" var="h">
+			<tr>
+				<td>${h.name}</td>
+				<td>${h.location}</td>
+				<td>${h.description}</td>
+				<td>${h.rate==-1?"unknown":h.rate}</td>
+				<td><a onclick="return confirm('Please Confirm')" href="/house/delete?ref=${h.idHouse}&name=${name}"> Delete </a> </td>
+				<td><a href="/house/edit?ref=${h.idHouse}">Edit</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+    <a href="/house">Add</a>
+    <table class="tabOffers">
+    	<caption>Your offers</caption>
+		<tr>
+			<th>House</th>
 			<th>Duration</th>
 			<th></th>
 			<th></th>
@@ -36,26 +58,34 @@
 		</tr>
 		<c:forEach items="${offers}" var="o">
 			<tr>
-				<td>${o.name}</td>
+				<c:forEach items="${houses}" var="h">
+					<c:if test = "${h.idHouse == o.houseId}">
+						<td>${h.name}</td>
+					</c:if>
+				</c:forEach>
 				<td>${o.begin} to ${o.end}</td>
 				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
 				<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
 				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 			</tr>
 		</c:forEach>
-		<tr><td><a href="/addOffer">Add</a></td></tr>
 	</table>
+	<a href="/addOffer">Add</a>
 	
 	<table class="tabOffers" id="accepted">
     	<caption>Accepted Offers</caption>
 		<tr>
-			<th>Name</th>
+			<th>House</th>
 			<th>Duration</th>
 			<th></th>
 		</tr>
 		<c:forEach items="${acceptedOffers}" var="o">
 			<tr>
-				<td>${o.name}</td>
+				<c:forEach items="${acceptedHouses}" var="h">
+					<c:if test = "${h.idHouse == o.houseId}">
+						<td>${h.name}</td>
+					</c:if>
+				</c:forEach>
 				<td>${o.begin} to ${o.end}</td>
 				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 			</tr>

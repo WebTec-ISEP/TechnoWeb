@@ -10,10 +10,12 @@ import java.util.Set;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.techweb.dao.HouseRepository;
 import org.techweb.dao.ImageRepository;
 import org.techweb.dao.MessageRepository;
 import org.techweb.dao.OfferRepository;
 import org.techweb.dao.UserRepository;
+import org.techweb.entities.House;
 import org.techweb.entities.Image;
 import org.techweb.entities.Message;
 import org.techweb.entities.Offer;
@@ -32,30 +34,47 @@ public class TechnoWebApp {
 		userDao.save(user1);
 		userDao.save(user2);
 		userDao.save(user3);
-		OfferRepository offerDao = ctx.getBean(OfferRepository.class);
 
 		Set<Tag> tags = new HashSet<Tag>();
 
 		String[] equipments = new String[] {"microwave","bath"};
 		String[] services = new String[] {"pet","plant"};
 		String[] constraints = new String[] {"smoke","children"};
+		
+		HouseRepository houseDao = ctx.getBean(HouseRepository.class);
+		
+		House house1 = new House("house1","france","beautiful house","root");
+		House house2 = new House("house2","france","beautiful house","toto");
+		House house3 = new House("house3","france","beautiful house","titi");
+		House house4 = new House("house4","france","beautiful house","root");
+		houseDao.save(house1);
+		houseDao.save(house2);
+		houseDao.save(house3);
+		houseDao.save(house4);
 
-		Offer offer4 = new Offer("offer4","france","2022-05-27","2022-05-29","jolie maison", user1.getName(),equipments,services,constraints);
-		offer4.addTags(new Tag("equipments", "microwave"));
-		offer4.addTags(new Tag("equipments", "bath"));
-		offerDao.save(offer4);
+		Long house1Id = houseDao.findByOwner("root").get(0).getIdHouse();
+		Long house2Id = houseDao.findByOwner("root").get(1).getIdHouse();
+		Long house3Id = houseDao.findByOwner("titi").get(0).getIdHouse();
+		Long house4Id = houseDao.findByOwner("toto").get(0).getIdHouse();
+		OfferRepository offerDao = ctx.getBean(OfferRepository.class);
+		
 
-		Offer offer1 = new Offer("offer1","france","2022-05-27","2022-05-29","jolie maison", user1.getName(),equipments,services,constraints);
+		Offer offer1 = new Offer(house1Id,"2022-05-27","2022-05-29",equipments,services,constraints);
 		offer1.addTags(new Tag("equipments", "microwave"));
 		offer1.addTags(new Tag("equipments", "bath"));
-		Offer offer2 = new Offer("offer2","france","2022-05-27","2022-05-29","jolie maison", user2.getName(),equipments,services,constraints);
+		Offer offer2 = new Offer(house2Id,"2022-05-27","2022-05-29",equipments,services,constraints);
 		offer2.addTags(new Tag("services", "plant"));
 		offer2.addTags(new Tag("constraints", "children"));
-		Offer offer3 = new Offer("offer3","france","2022-05-27","2022-05-29","jolie maison", user3.getName(),equipments,services,constraints);
+		Offer offer3 = new Offer(house3Id,"2022-05-27","2022-05-29", equipments,services,constraints);
+		offer3.addTags(new Tag("services", "plant"));
+		offer3.addTags(new Tag("constraints", "children"));
+		Offer offer4 = new Offer(house4Id,"2022-05-27","2022-05-29",equipments,services,constraints);
+		offer4.addTags(new Tag("equipments", "microwave"));
+		offer4.addTags(new Tag("equipments", "bath"));	
 		offerDao.save(offer1);
 		offerDao.save(offer2);
 		offerDao.save(offer3);
-		offerDao.findAll().forEach(o->System.out.println(o.getName()));
+		offerDao.save(offer4);
 
 		try {
 			String path = "image";
@@ -70,12 +89,12 @@ public class TechnoWebApp {
 			byte[] byteArrayImage3 = Files.readAllBytes(image3.toPath());
 
 			ImageRepository imageDao = ctx.getBean(ImageRepository.class);
-			imageDao.save(new Image(byteArrayImage2,offer1.getIdOffer()));
-			imageDao.save(new Image(byteArrayImage1,offer1.getIdOffer()));
-			imageDao.save(new Image(byteArrayImage3,offer1.getIdOffer()));
-			imageDao.save(new Image(byteArrayImage1,offer2.getIdOffer()));
-			imageDao.save(new Image(byteArrayImage1,offer3.getIdOffer()));
-			imageDao.save(new Image(byteArrayImage1,offer4.getIdOffer()));
+			imageDao.save(new Image(byteArrayImage2,offer1.getHouseId()));
+			imageDao.save(new Image(byteArrayImage1,offer1.getHouseId()));
+			imageDao.save(new Image(byteArrayImage3,offer1.getHouseId()));
+			imageDao.save(new Image(byteArrayImage1,offer2.getHouseId()));
+			imageDao.save(new Image(byteArrayImage1,offer3.getHouseId()));
+			imageDao.save(new Image(byteArrayImage1,offer4.getHouseId()));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

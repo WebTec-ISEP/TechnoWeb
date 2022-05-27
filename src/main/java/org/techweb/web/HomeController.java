@@ -16,14 +16,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.techweb.dao.HouseRepository;
 import org.techweb.dao.ImageRepository;
 import org.techweb.dao.OfferRepository;
 import org.techweb.dao.TagRepository;
+import org.techweb.entities.House;
 import org.techweb.entities.Image;
 import org.techweb.entities.Offer;
 
 @Controller
 public class HomeController {
+	@Autowired
+	private	HouseRepository houseDao;
 	@Autowired
 	private OfferRepository offerDao;
 	@Autowired
@@ -39,6 +43,7 @@ public class HomeController {
 			HttpServletRequest request) {
 		List<String> tags = new ArrayList<String>();
 		String userName = (String)session.getAttribute("name");
+		
 		String[] equipments = request.getParameterValues("equipments");
 
 		if(equipments!=null && equipments.length !=0 ) {
@@ -63,20 +68,44 @@ public class HomeController {
 		} else {
 			model.addAttribute("connected", "1");
 		}
+		
 		List<Offer> offers = new ArrayList<Offer>();
-		if(mc.equals("")&&tags.size()<=0) {
-			offers = offerDao.findByName("%" + mc + "%"); 
+		List<House> houses = new ArrayList<House>();
+		
+		houses = houseDao.findAll();
+		
+		if(!mc.equals("")) {
+			houses = houseDao.findByName("%" + mc + "%");
+			for(House house:houses) {
+				offers.addAll(offerDao.findByHouseId(house.getIdHouse()));
+			}
+		} else {
+			for(House house:houses) {
+				offers.addAll(offerDao.findByHouseId(house.getIdHouse()));
+			}
 		}
 
-		if(tags.size()>0) offers.addAll(removeOffersNotMatchingAllTags(tagDao.findOffersMatchingTags(tags), tags.size()));
-		if(!mc.equals("")) offers.addAll(offerDao.findByName("%" + mc + "%")); 
+		if(tags.size()>0){
+			List<Offer> transitionList = new ArrayList<Offer>();
+			List<Offer> machingTagOffers = removeOffersNotMatchingAllTags(tagDao.findOffersMatchingTags(tags), tags.size());
+			for(Offer machingTagOffer:machingTagOffers) {
+				for(Offer offer:offers) {
+					if(machingTagOffer.getIdOffer()==offer.getIdOffer()) {
+						transitionList.add(offer);
+					}
+				}
+			}
+			offers = transitionList;
+		}
+		
 		List<String> imagesBase64String = new ArrayList<String>();
 		for(Offer offer:offers) {
-			Image image = imageDao.findByOfferId(offer.getIdOffer()).get(0);
+			Image image = imageDao.findByHouseId(offer.getHouseId()).get(0);
 			String base64String = Base64.getEncoder().encodeToString(image.getImage());
 			imagesBase64String.add(base64String);
 		}
 		model.addAttribute("images", imagesBase64String);
+		model.addAttribute("houses", houses);
 		model.addAttribute("offers", offers);
 		model.addAttribute("motC", mc);
 		return("home");
@@ -104,15 +133,4 @@ public class HomeController {
 		return new ArrayList<Offer>(counts.keySet());
 	}
 
-	public static <T> List<T> removeDuplicates(List<T> list)
-	{
-		ArrayList<T> newList = new ArrayList<T>();
-		for (T element : list) {
-			if (!newList.contains(element)) {
-
-				newList.add(element);
-			}
-		}
-		return newList;
-	}
 }

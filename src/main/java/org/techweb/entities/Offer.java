@@ -9,7 +9,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,12 +19,9 @@ public class Offer {
 	@Id @GeneratedValue
 	private Long idOffer;
 	@Column(length=100)
-	private String name;
-	private String location;
+	private long houseId;
 	private long begin;
 	private long end;
-	private String description;
-	private String owner;
 	private boolean validate;
 	private String[] equipments;
 	private String[] services;
@@ -34,14 +30,11 @@ public class Offer {
 	@JoinColumn(name="id_offer")
 	private Set<Tag> tags;
 
-	public Offer(String name, String location, String begin, String end, String description, String owner, String[] equipments, String[] services, String[] constraints) {
+	public Offer(long houseId, String begin, String end, String[] equipments, String[] services, String[] constraints) {
 		setValidate(false);
-		this.setName(name);
-		this.setLocation(location);
+		this.setHouseId(houseId);
 		this.setBegin(begin);
 		this.setEnd(end);
-		this.setDescription(description);
-		this.setOwner(owner);
 		this.setEquipments(equipments);
 		this.setServices(services);
 		this.setConstraints(constraints);
@@ -53,6 +46,14 @@ public class Offer {
 		this.tags = new HashSet<Tag>();
 	}
 	
+	public long getHouseId() {
+		return houseId;
+	}
+
+	public void setHouseId(long houseId) {
+		this.houseId = houseId;
+	}
+
 	public Long getIdOffer() {
 		return idOffer;
 	}
@@ -60,38 +61,7 @@ public class Offer {
 	public void setIdOffer(Long idOffer) {
 		this.idOffer = idOffer;
 	}
-	
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getOwner() {
-		return owner;
-	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
 
 	public boolean isValidate() {
 		return validate;
@@ -167,6 +137,5 @@ public class Offer {
 		    e.printStackTrace();
 		}
 	}
-
 	
 }
