@@ -29,6 +29,7 @@
     	<caption>Vos Offres</caption>
 		<tr>
 			<th>Name</th>
+			<th>Duration</th>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -36,6 +37,7 @@
 		<c:forEach items="${offers}" var="o">
 			<tr>
 				<td>${o.name}</td>
+				<td>${o.begin} to ${o.end}</td>
 				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
 				<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
 				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
@@ -48,11 +50,13 @@
     	<caption>Accepted Offers</caption>
 		<tr>
 			<th>Name</th>
+			<th>Duration</th>
 			<th></th>
 		</tr>
 		<c:forEach items="${acceptedOffers}" var="o">
 			<tr>
 				<td>${o.name}</td>
+				<td>${o.begin} to ${o.end}</td>
 				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 			</tr>
 		</c:forEach>

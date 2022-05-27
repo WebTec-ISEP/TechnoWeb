@@ -1,11 +1,14 @@
 package org.techweb.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Base64;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,7 +41,8 @@ public class OfferManagementController {
 	@RequestMapping(value = "/addOffer/submit")
 	public String add(Model model,@RequestParam(name = "offerName", defaultValue = "") String offerName,
 			@RequestParam(name = "offerLocation", defaultValue = "") String offerLocation,
-			@RequestParam(name = "offerDuration", defaultValue = "") Long offerDuration,
+			@RequestParam(name = "offerBegin", defaultValue = "") String offerBegin,
+			@RequestParam(name = "offerEnd", defaultValue = "") String offerEnd,
 			@RequestParam(name = "offerDescription", defaultValue = "") String offerDescription,
 			@RequestParam(name = "offerImages") MultipartFile[] files,
 			HttpServletRequest request,
@@ -48,20 +52,23 @@ public class OfferManagementController {
 			String[] services = request.getParameterValues("services");
 			String[] constraints = request.getParameterValues("constraints");
 			String owner = (String)session.getAttribute("name");
+			
+			
 			Offer offer = new Offer();
 			offer.setName(offerName);
 			offer.setLocation(offerLocation);
-			offer.setDuration(offerDuration);
+			offer.setBegin(offerBegin);
+			offer.setEnd(offerEnd);
 			offer.setDescription(offerDescription);
 			offer.setOwner(owner);
 			offer.setEquipments(equipments);
 			offer.setServices(services);
 			offer.setConstraints(constraints);
-			//equip
+			//equipments
 			for(String e : equipments) {
 				offer.addTags(new Tag("equipments",e));
 			}
-			//serv
+			//services
 			for(String s : services) {
 				offer.addTags(new Tag("services",s));
 			}

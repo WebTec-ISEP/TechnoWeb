@@ -40,18 +40,18 @@ public class TechnoWebApp {
 		String[] services = new String[] {"pet","plant"};
 		String[] constraints = new String[] {"smoke","children"};
 
-		Offer offer4 = new Offer("offer4","france",1,"jolie maison", user1.getName(),equipments,services,constraints);
+		Offer offer4 = new Offer("offer4","france","2022-05-27","2022-05-29","jolie maison", user1.getName(),equipments,services,constraints);
 		offer4.addTags(new Tag("equipments", "microwave"));
 		offer4.addTags(new Tag("equipments", "bath"));
 		offerDao.save(offer4);
 
-		Offer offer1 = new Offer("offer1","france",1,"jolie maison", user1.getName(),equipments,services,constraints);
+		Offer offer1 = new Offer("offer1","france","2022-05-27","2022-05-29","jolie maison", user1.getName(),equipments,services,constraints);
 		offer1.addTags(new Tag("equipments", "microwave"));
 		offer1.addTags(new Tag("equipments", "bath"));
-		Offer offer2 = new Offer("offer2","france",1,"jolie maison", user2.getName(),equipments,services,constraints);
+		Offer offer2 = new Offer("offer2","france","2022-05-27","2022-05-29","jolie maison", user2.getName(),equipments,services,constraints);
 		offer2.addTags(new Tag("services", "plant"));
 		offer2.addTags(new Tag("constraints", "children"));
-		Offer offer3 = new Offer("offer3","france",1,"jolie maison", user3.getName(),equipments,services,constraints);
+		Offer offer3 = new Offer("offer3","france","2022-05-27","2022-05-29","jolie maison", user3.getName(),equipments,services,constraints);
 		offerDao.save(offer1);
 		offerDao.save(offer2);
 		offerDao.save(offer3);

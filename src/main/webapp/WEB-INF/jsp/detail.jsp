@@ -26,6 +26,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Location</th>
+			<th>Duration</th>
 			<th>Description</th>
 			<th>Equipments</th>
 			<th>Services</th>
@@ -34,6 +35,7 @@
 		<tr>
 			<td>${offer.name}</td>
 			<td>${offer.location}</td>
+			<td>${offer.begin} to ${offer.end}</td>
 			<td>${offer.description}</td>
 			<td><c:forEach items="${offer.equipments}" var="e">
 				<p>${e}</p>
@@ -64,6 +66,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Location</th>
+					<th>Duration</th>
 					<th>Description</th>
 					<th>Owner</th>
 				</tr>
@@ -71,6 +74,7 @@
 					<tr>
 						<td>${o.name}</td>
 						<td>${o.location}</td>
+						<td>${o.begin} to ${o.end}</td>
 						<td>${o.description}</td>
 						<td><a href="/profil?ref=${o.idOffer}&name=${o.owner}">${o.owner}</a></td>
 						<td><button type="submit" name="accept" value="${o.idOffer}">Accept</button></td>
@@ -87,6 +91,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Location</th>
+				<th>Duration</th>
 				<th>Description</th>
 				<th>Owner</th>
 			</tr>
@@ -94,6 +99,7 @@
 				<tr>
 					<td>${o.name}</td>
 					<td>${o.location}</td>
+					<td>${o.begin} to ${o.end}</td>
 					<td>${o.description}</td>
 					<td><a href="/profil?ref=${o.idOffer}&name=${o.owner}">${o.owner}</a></td>
 					<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>

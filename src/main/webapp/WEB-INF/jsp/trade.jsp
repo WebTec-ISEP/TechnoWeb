@@ -32,12 +32,14 @@
 		<tr>
 			<th>Name</th>
 			<th>Location</th>
+			<th>Duration</th>
 			<th>Description</th>
 			<th>Owner</th>
 		</tr>
 		<tr>
 			<td>${offer.name}</td>
 			<td>${offer.location}</td>
+			<td>${offer.begin} to ${offer.end}</td>
 			<td>${offer.description}</td>
 			<td><a href="/profil?ref=${offer.idOffer}&name=${offer.owner}">${offer.owner}</a></td>
 		</tr>

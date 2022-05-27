@@ -36,7 +36,8 @@ pageEncoding="utf-8"%>
 					</tr>
 					<tr>
 						<td><label>Duration</label></td>
-						<td><input type="text" name="offerDuration" value = "${offer.duration}" /></td>
+						<td><input type="date" name="offerBegin" value = "${offer.begin}" />-
+						<input type="date" name="offerEnd" value = "${offer.end}" /></td>
 					</tr>
 					<tr>
 						<td><label>Description</label></td>

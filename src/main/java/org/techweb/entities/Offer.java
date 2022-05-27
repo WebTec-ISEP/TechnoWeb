@@ -1,5 +1,8 @@
 package org.techweb.entities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +22,8 @@ public class Offer {
 	@Column(length=100)
 	private String name;
 	private String location;
-	private long duration;
+	private long begin;
+	private long end;
 	private String description;
 	private String owner;
 	private boolean validate;
@@ -30,11 +34,12 @@ public class Offer {
 	@JoinColumn(name="id_offer")
 	private Set<Tag> tags;
 
-	public Offer(String name, String location, long duration, String description, String owner, String[] equipments, String[] services, String[] constraints) {
+	public Offer(String name, String location, String begin, String end, String description, String owner, String[] equipments, String[] services, String[] constraints) {
 		setValidate(false);
 		this.setName(name);
 		this.setLocation(location);
-		this.setDuration(duration);
+		this.setBegin(begin);
+		this.setEnd(end);
 		this.setDescription(description);
 		this.setOwner(owner);
 		this.setEquipments(equipments);
@@ -70,14 +75,6 @@ public class Offer {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public long getDuration() {
-		return duration;
-	}
-
-	public void setDuration(long duration) {
-		this.duration = duration;
 	}
 
 	public String getDescription() {
@@ -137,6 +134,38 @@ public class Offer {
 	
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
+	}
+
+	public String getBegin() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date beginDate = new Date(begin);
+		return format.format(beginDate);
+	}
+
+	public void setBegin(String begin) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+		    Date beginDate = format.parse(begin);
+		    this.begin = beginDate.getTime();
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
+	}
+
+	public String getEnd() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date endDate = new Date(end);
+		return format.format(endDate);
+	}
+
+	public void setEnd(String end) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+		    Date endDate = format.parse(end);
+		    this.end = endDate.getTime();
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
 	}
 
 	
