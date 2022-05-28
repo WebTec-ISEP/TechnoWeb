@@ -1,5 +1,11 @@
 @charset "ISO-8859-1";
+:root {
+  --main-color: #ff8000;
+  --second-color: #c86400;
+}
+
 body{
+	font-family: calibri;
 	margin:0;
 	padding-top:100px;
 }
@@ -46,11 +52,13 @@ body{
 
 
 .navigationBar form #login{
+	font-family: calibri;
+	font-size: 16px;
 	background-color: #333;
 	display: block;
   	color: white;
   	text-align: center;
-  	padding: 15px 16px;
+  	padding: 13px 16px;
   	text-decoration: none;
   	border:none;
   	width:50%;
@@ -67,11 +75,11 @@ body{
 	border-left: 1px solid #bbb;
 	float:left;
 	width:49%;
-	padding: 14px 0px;
+	padding: 13px 0px;
 }
 
 .active {
-	background-color: #04AA6D;
+	background-color: var(--main-color);
 }
 
 .searchBar table{
@@ -84,6 +92,7 @@ body{
   	border: 1px solid #ccc;  
   	font-size: 17px;
   	width:50%;
+  	border-radius: 5px 0px 0px 5px;
 }
 
 .searchBar input[type="submit"]{
@@ -92,6 +101,7 @@ body{
   	font-size: 17px;
   	width:15%;
   	margin-bottom:20px;
+  	border-radius: 0px 5px 5px 0px;
 }
 
 .searchBar fieldset{
@@ -123,18 +133,18 @@ body{
 }
 
 .tabOffers th {
-	background-color: #04AA6D;
+	background-color: var(--main-color);
 	color: white;
 }
 
 .tabOffers td a {
 	text-decoration:none;
-	color:green;
+	color:#c86400;
 }
 
 .tabOffers caption {
 	padding: 8px;
-	color:#04AA6D;
+	color:var(--main-color);
 }
 
 .sendMessage{
@@ -152,7 +162,7 @@ body{
 }
 
 .sendMessage input[type="submit"]{
-	background-color:#04AA6D;
+	background-color:var(--main-color);
 	color:#f2f2f2;
 	font-size:30px;
 	border:none;
@@ -187,8 +197,8 @@ body{
 }
 
 .offerForm fieldset{
-	color:#04AA6D;
-	border-color:#04AA6D;
+	color:var(--main-color);
+	border-color:var(--main-color);
 	text-align:left;
 }
 
@@ -197,7 +207,7 @@ body{
 }
 
 .offerForm input[type="submit"]{
-	background-color:#04AA6D;
+	background-color:var(--main-color);
 	color:#f2f2f2;
 	font-size:30px;
 	border:none;
@@ -206,21 +216,22 @@ body{
 }
 
 .offerForm input[type="submit"]:hover{
-	background-color:green;
+	background-color:var(--second-color);
 }
 
 *{box-sizing: border-box}
 
 .slider-scroll {
-	width: 600px;
-	max-width: 100%;
-	max-height:398px;
-	margin: 2rem auto;
-	display: flex;
-	overflow-x: hidden;
-	scroll-behavior: smooth;
-	scroll-snap-type: x mandatory;
-	-webkit-overflow-scrolling: touch;
+
+width: 600px;
+max-width: 100%;
+max-height:398px;
+margin: 2rem auto;
+display: flex;
+overflow-x: hidden;
+scroll-behavior: smooth;
+scroll-snap-type: x mandatory;
+-webkit-overflow-scrolling: touch;
 }
 
 .slider-scroll img {
@@ -250,16 +261,16 @@ body{
 .ancre li a{color:white}
 	
 .ancre li:not(:last-child){
-	margin-right: 30px;
+	 margin-right: 30px;
 }
 
 
 .ancre li a:hover {
-  	opacity: 0.5;
+  opacity: 0.5;
 }
 
 .linkButton{
-	background-color:#04AA6D;
+	background-color:var(--main-color);
 	color:#f2f2f2;
 	font-size:30px;
 	border:none;
@@ -270,7 +281,7 @@ body{
 }
 
 .linkButton:hover{
-	background-color:green;
+	background-color:var(--second-color);
 	color:#f2f2f2;
 }
 
@@ -285,7 +296,7 @@ body{
 #proposeOffer{
 	padding:10px;
 	color:white;
-	background-color:#04AA6D;
+	background-color:var(--main-color);
 	float:left;
 	font-size:30px;
 	border:none;
@@ -295,16 +306,16 @@ body{
 .addButton{
 	margin:10px;
 	padding:10px;
-	border:1px solid #04AA6D;
+	border:1px solid var(--main-color);
 	border-radius:3px;
-	background-color:#04AA6D;
+	background-color:var(--main-color);
 	color:white;
 	text-decoration:none;
 }
 
 .addButton:hover{
-	border:1px solid green;
-	background-color:green;
+	border:1px solid #c86400;
+	background-color:var(--second-color);
 }
 
 img{
