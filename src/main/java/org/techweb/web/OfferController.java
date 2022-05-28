@@ -31,7 +31,7 @@ public class OfferController {
 	private ImageRepository imageDao;
 	
 	@RequestMapping(value = "/offer")
-	public String delete(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer, HttpSession session) {
+	public String offer(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer, HttpSession session) {
 		String userName = (String)session.getAttribute("name");
 		if(userName == null) {
 			model.addAttribute("connected", "0");
