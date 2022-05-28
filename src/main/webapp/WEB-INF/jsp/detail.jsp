@@ -10,18 +10,18 @@
 <body>
 	<div class="navigationBar">
 		<ul>
+			<c:if test = "${previous == null}">
+				<li><a href="/personalSpace">Back</a></li>
+			</c:if>
+			<c:if test = "${previous != null}">
+				<li><a href="/detail?ref=${previous}">Back</a></li>
+			</c:if>
 			<li><a href="/home">Home</a></li>
 			<li><a href="/personalSpace">Personal space</a></li>
 			<li><a href="/messaging">Messages</a></li>
 			<li style="float:right"><a href="/logout">log out</a></li>
 		</ul>
 	</div>
-	<c:if test = "${previous != null}">
-		<a href="/detail?ref=${previous}">Back</a>
-	</c:if>
-	<c:if test = "${previous == null}">
-		<a href="/personalSpace">Back</a>
-	</c:if>
 	<table class="tabOffers">
 		<tr>
 			<th>Name</th>

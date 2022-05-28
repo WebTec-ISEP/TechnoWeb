@@ -46,7 +46,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-    <a href="/house">Add</a>
+    <a href="/house" class="addButton">Add</a>
     <table class="tabOffers">
     	<caption>Your offers</caption>
 		<tr>
@@ -70,7 +70,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/addOffer">Add</a>
+	<a href="/addOffer" class="addButton">Add</a>
 	
 	<table class="tabOffers" id="accepted">
     	<caption>Accepted Offers</caption>
