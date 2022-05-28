@@ -85,7 +85,7 @@ public class OfferController {
 		return "offer";
 	}
 
-	@RequestMapping(value = "/rate")
+	@RequestMapping(value = "/rateEstate")
 	public String rate(Model model, @RequestParam(name = "ref", defaultValue = "") Long idOffer,@RequestParam(name = "rate", defaultValue = "-1") double rate, HttpSession session) {
 		String userName = (String)session.getAttribute("name");
 		if(userName == null) {
