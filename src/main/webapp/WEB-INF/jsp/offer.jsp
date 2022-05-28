@@ -69,5 +69,21 @@
 		</c:forEach>
 	</ul>
 	<a class="linkButton" href="/trade?ref=${offer.idOffer}">Trade</a>
+	<p>${rating}</p>
+	<div>
+	    <form action="/rate?ref=${offer.idOffer}" method="post">
+	  		<label for="rate">noté nous !:</label>
+	  		<select id="rate" name="rate" size="5" multiple="">
+			    <option value="0">mauvais</option>
+			    <option value="1">mediocre</option>
+			    <option value="2">passable</option>
+			    <option value="3">bon</option>
+			    <option value="5">trés bon</option>
+	  		</select>
+	  		<br>
+	  		<br>
+	 	 	<input type="submit">
+		</form>
+	</div>
 </body>
 </html>

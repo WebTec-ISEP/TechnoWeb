@@ -15,8 +15,17 @@ public class House {
 	private String location;
 	private String description;
 	private String owner;
-	private int rate;
+	private double rate;
+	private int numberOfRate;
 	
+	public int getNumberOfRate() {
+		return numberOfRate;
+	}
+
+	public void setNumberOfRate(int numberOfRate) {
+		this.numberOfRate = numberOfRate;
+	}
+
 	public House(String name, String location, String description, String owner) {
 		this.name = name;
 		this.location = location;
@@ -62,10 +71,10 @@ public class House {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-	public int getRate() {
+	public double getRate() {
 		return rate;
 	}
-	public void setRate(int rate) {
-		this.rate = rate;
+	public void setRate(double d) {
+		this.rate = d;
 	}
 }
