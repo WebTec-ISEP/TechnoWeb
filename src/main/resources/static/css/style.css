@@ -318,6 +318,45 @@ scroll-snap-type: x mandatory;
 	background-color:var(--second-color);
 }
 
+.rate{
+	text-align:center;
+}
+
+.rate label{
+	color:var(--main-color);
+}
+
+.rate select{
+	border:none;
+	border-left:2px solid var(--main-color);
+	border-right:2px solid var(--main-color);
+	overflow-y: auto;
+	text-align:center;
+}
+
+
+.rate select option:hover{
+	background-color:var(--main-color);
+	color:white;
+}
+
+.rate input{
+	background-color:var(--main-color);
+	color:#f2f2f2;
+	border:none;
+	border-radius:3px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:10px;
+	display:block;
+}
+
+.rate input:hover{
+	background-color:var(--second-color);
+}
+
+
 img{
 	border-radius:3px;
 }

@@ -59,22 +59,22 @@ public class OfferController {
 			String stringRating;
 			switch (rateToPrint) {
 			case 0:
-				stringRating="Note moyenne : mauvais";
+				stringRating="very bad";
 				break;
 			case 1:
-				stringRating="Note moyenne : mediocre";
+				stringRating="bad";
 				break;
 			case 2:
-				stringRating="Note moyenne : passable";
+				stringRating="ok";
 				break;
 			case 3:
-				stringRating="Note moyenne : bien";
+				stringRating="good";
 				break;
 			case 4:
-				stringRating="Note moyenne : trés bien";
+				stringRating="very good";
 				break;
 			default:
-				stringRating="soyez le premier a noté !";
+				stringRating="be the first one to rate !";
 				break;
 			}
 			System.out.println("rating : "+stringRating);
