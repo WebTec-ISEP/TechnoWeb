@@ -14,6 +14,7 @@
 			} else {
 				$('.logged').hide();
 				$('.linkButton').hide();
+				$('.rate').hide();
 			}
 		});
 	</script>
@@ -55,7 +56,7 @@
 			<td><c:forEach items="${offer.constraints}" var="c">
 				<p>${c}</p>
 			</c:forEach></td>
-			<td>${house.rate==-1?"unknown":house.rate}</td>
+			<td>${rating}</td>
 		</tr>
 	</table>
 	<div class=slider-scroll>
@@ -68,22 +69,19 @@
 			<li><a href="#slide-scroll${i}">${i}</a></li>
 		</c:forEach>
 	</ul>
-	<a class="linkButton" href="/trade?ref=${offer.idOffer}">Trade</a>
-	<p>${rating}</p>
-	<div>
+	<div class="rate">
+		<label>Rating</label>
 	    <form action="/rateEstate?ref=${offer.idOffer}" method="post">
-	  		<label for="rate">noté nous !:</label>
 	  		<select id="rate" name="rate" size="5" multiple="">
-			    <option value="0">mauvais</option>
-			    <option value="1">mediocre</option>
-			    <option value="2">passable</option>
-			    <option value="3">bon</option>
-			    <option value="5">trés bon</option>
+			    <option value="0">very bad</option>
+			    <option value="1">bad</option>
+			    <option value="2">ok</option>
+			    <option value="3">good</option>
+			    <option value="5">very good</option>
 	  		</select>
-	  		<br>
-	  		<br>
-	 	 	<input type="submit">
+	 	 	<input type="submit" value ="Send">
 		</form>
+		<a class="linkButton" href="/trade?ref=${offer.idOffer}">Trade</a>
 	</div>
 </body>
 </html>
