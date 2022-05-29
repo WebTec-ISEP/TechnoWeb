@@ -29,36 +29,39 @@ public class TechnoWebApp {
 		
 		
 		ApplicationContext ctx = SpringApplication.run(TechnoWebApp.class, args);
-		User user1 = new User("root","123","mail1");
+		User user1 = new User("admin","123","mail1");
 		User user2 = new User("toto","1234","mail2");
 		User user3 = new User("titi","1234","mail3");
+		User user4 = new User("root","1234","mail3");
 		user1.setAdmin(true);
 		UserRepository userDao = ctx.getBean(UserRepository.class);
 		userDao.save(user1);
 		userDao.save(user2);
 		userDao.save(user3);
+		userDao.save(user4);
 
-		Set<Tag> tags = new HashSet<Tag>();
-		
 		String[] equipments = new String[] {"microwave","bath"};
 		String[] services = new String[] {"pet","plant"};
 		String[] constraints = new String[] {"smoke","children"};
 		
 		HouseRepository houseDao = ctx.getBean(HouseRepository.class);
 		
-		House house1 = new House("house1","france","beautiful house","root");
-		House house2 = new House("house2","france","beautiful house","toto");
-		House house3 = new House("house3","france","beautiful house","titi");
-		House house4 = new House("house4","france","beautiful house","root");
+		House house1 = new House("beautiful house","74 rue lapatite, Paris, France","beautiful house","admin");
+		House house2 = new House("regular house","2 rue de la montagne, britain, France","a great house located right near a mountain","toto");
+		House house3 = new House("great house","2 CliffRow, london, UK","beautiful house","titi");
+		House house4 = new House("ugly mansion","2 rue des sapins,Issy,France","beautiful house","root");
+		House house5 = new House("box","2 rue des sapins,Issy,France","a box sized acomodation right in front of a mansion","root");
 		houseDao.save(house1);
 		houseDao.save(house2);
 		houseDao.save(house3);
 		houseDao.save(house4);
+		houseDao.save(house5);
 
-		Long house1Id = houseDao.findByOwner("root").get(0).getIdHouse();
-		Long house2Id = houseDao.findByOwner("root").get(1).getIdHouse();
+		Long house1Id = houseDao.findByOwner("admin").get(0).getIdHouse();
+		Long house2Id = houseDao.findByOwner("toto").get(0).getIdHouse();
 		Long house3Id = houseDao.findByOwner("titi").get(0).getIdHouse();
-		Long house4Id = houseDao.findByOwner("toto").get(0).getIdHouse();
+		Long house4Id = houseDao.findByOwner("root").get(0).getIdHouse();
+		Long house5Id = houseDao.findByOwner("root").get(1).getIdHouse();
 		OfferRepository offerDao = ctx.getBean(OfferRepository.class);
 		
 
@@ -74,10 +77,14 @@ public class TechnoWebApp {
 		Offer offer4 = new Offer(house4Id,"2022-05-27","2022-05-29",equipments,services,constraints);
 		offer4.addTags(new Tag("equipments", "microwave"));
 		offer4.addTags(new Tag("equipments", "bath"));	
+		Offer offer5 = new Offer(house5Id,"2022-05-27","2022-05-29",equipments,services,constraints);
+		offer5.addTags(new Tag("equipments", "microwave"));
+		offer5.addTags(new Tag("services", "wifi"));
 		offerDao.save(offer1);
 		offerDao.save(offer2);
 		offerDao.save(offer3);
 		offerDao.save(offer4);
+		offerDao.save(offer5);
 
 		try {
 			String path = "image";
@@ -87,33 +94,58 @@ public class TechnoWebApp {
 
 			File image2 = new File(path+"2.jpg");
 			byte[] byteArrayImage2 = Files.readAllBytes(image2.toPath());
-
+			
+			File imagecliff = new File("housecliff.jpg");
+			byte[] byteArrayImageCliff = Files.readAllBytes(imagecliff.toPath());
+			
 			File image3 = new File(path+"3.jpg");
 			byte[] byteArrayImage3 = Files.readAllBytes(image3.toPath());
-
+			
+			File MansionExtImageFile = new File("mansion.jpg");
+			byte[] byteArrayMansionExtImage = Files.readAllBytes(MansionExtImageFile.toPath());
+			File MansionbathImageFile = new File("mansionBath.jpg");
+			byte[] byteArrayMansionbathImage = Files.readAllBytes(MansionbathImageFile.toPath());
+			File MansionInsImageFile = new File("mansionInside.jpg");
+			byte[] byteArrayMansionInsImage = Files.readAllBytes(MansionInsImageFile.toPath());
+			
+			File boxExtImageFile = new File("box.jpg");
+			byte[] byteArrayBoxExtImage = Files.readAllBytes(boxExtImageFile.toPath());
+			
+			File boxInsImageFile = new File("boxInside.jpg");
+			byte[] byteArrayBoxInsImage = Files.readAllBytes(boxInsImageFile.toPath());
+			
+			File boxmicrowaveImageFile = new File("boxmicrowaveaccomodation.jpg");
+			byte[] byteArrayBoxMWImage = Files.readAllBytes(boxmicrowaveImageFile.toPath());
+		
 			ImageRepository imageDao = ctx.getBean(ImageRepository.class);
 			imageDao.save(new Image(byteArrayImage2,offer1.getHouseId()));
 			imageDao.save(new Image(byteArrayImage1,offer1.getHouseId()));
 			imageDao.save(new Image(byteArrayImage3,offer1.getHouseId()));
-			imageDao.save(new Image(byteArrayImage1,offer2.getHouseId()));
+			imageDao.save(new Image(byteArrayImageCliff,offer2.getHouseId()));
 			imageDao.save(new Image(byteArrayImage1,offer3.getHouseId()));
-			imageDao.save(new Image(byteArrayImage1,offer4.getHouseId()));
+			imageDao.save(new Image(byteArrayMansionExtImage,offer4.getHouseId()));
+			imageDao.save(new Image(byteArrayMansionbathImage,offer4.getHouseId()));
+			imageDao.save(new Image(byteArrayMansionInsImage,offer4.getHouseId()));
+			imageDao.save(new Image(byteArrayBoxExtImage,offer5.getHouseId()));
+			imageDao.save(new Image(byteArrayBoxInsImage,offer5.getHouseId()));
+			imageDao.save(new Image(byteArrayBoxMWImage,offer5.getHouseId()));
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		MessageRepository messageDao = ctx.getBean(MessageRepository.class);
-		messageDao.save(new Message(user1.getName(),user2.getName(),123,"hello world"));
-		messageDao.save(new Message(user1.getName(),user3.getName(),123,"hello world"));
-		messageDao.save(new Message(user2.getName(),user1.getName(),124,"hello world 2"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),124,"hello world 2"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),125,"hello world 3"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),126,"hello world 4"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),127,"hello world 5"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),128,"hello world 6"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),129,"hello world 7"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),130,"hello world 8"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),131,"hello world 9"));
-		messageDao.save(new Message(user3.getName(),user1.getName(),132,"hello world, what's up bro, i want to send you a very long message!"));
+		messageDao.save(new Message(user1.getName(),user2.getName(),123,"hello Mr toto, is your house close to public transport ?"));
+		messageDao.save(new Message(user1.getName(),user3.getName(),123,"hello Mr titi, is your house still availible for trade ?"));
+		messageDao.save(new Message(user2.getName(),user1.getName(),124,"yes, the metro is 5 min to the north"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),124,"of course Mr admin"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),125,"but i received multiples offers by now, you might want to make an offer soon if you are interested"));
+		messageDao.save(new Message(user3.getName(),user1.getName(),126,"best regards."));
+		messageDao.save(new Message(user1.getName(),user3.getName(),127,"ok, i'll get to it as soon as i can"));
+		messageDao.save(new Message(user1.getName(),user2.getName(),128,"ok thanks."));
+		messageDao.save(new Message(user2.getName(),user3.getName(),129,"hi, when your offer say no children, does it mean i can't bring mine or that there is not any comming with the house ?"));
+		messageDao.save(new Message(user3.getName(),user2.getName(),130,"it means you can't bring your childrens..."));
+		messageDao.save(new Message(user2.getName(),user3.getName(),131,"ok that make sense"));
+		messageDao.save(new Message(user1.getName(),user4.getName(),132,"hello world,i'm letting you know that box on the side of the road does not match our housing requirement, your offer will be remove in the near future"));
 		messageDao.save(new Message(user1.getName(),user3.getName(),133,"bye"));
 		messageDao.save(new Message(user3.getName(),user1.getName(),134,"bye"));
 		System.out.println(
