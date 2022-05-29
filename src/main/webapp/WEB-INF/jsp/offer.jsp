@@ -72,7 +72,7 @@
 	<div class="rate">
 		<label>Rating</label>
 	    <form action="/rateEstate?ref=${offer.idOffer}" method="post">
-	  		<select id="rate" name="rate" size="5" multiple="">
+	  		<select id="rate" name="rate" size="5" multiple>
 			    <option value="0">very bad</option>
 			    <option value="1">bad</option>
 			    <option value="2">ok</option>

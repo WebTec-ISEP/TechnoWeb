@@ -51,7 +51,8 @@
 		</ul>
 	</div>
     <div class="selectContactDiv">
-		<select name="item" class="selectContact" id="selectContact" onchange="updated()" size="${messages.keySet().size()}">
+    	<label>Contacts</label>
+		<select name="item" id="selectContact" onchange="updated()" multiple>
 			<c:forEach items="${messages.keySet()}" var="contact">
 				<option>${contact}</option>
 			</c:forEach>
@@ -63,9 +64,17 @@
 		<div class="conv" id="${contact}">
 		<% String contact = (String)pageContext.getAttribute("contact");
 			List<Message> messagesList = messages.get(contact);
-			for(Message message:messagesList){%>
-			<p><%out.print(message.getSender()+" : "+message.getContent());%></p>
-		<%}%>
+			for(Message message:messagesList){
+				if(message.getSender().equals(session.getAttribute("name"))){%>
+					<div class="send">
+						<p><span><%out.print(message.getContent());%></span></p>
+					</div>
+				<%} else {%>
+					<div class="received">
+						<p><span><%out.print(message.getContent());%></span></p>
+					</div>
+				<%}
+			}%>
 		</div>
 	</c:forEach>
 	

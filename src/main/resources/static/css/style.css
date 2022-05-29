@@ -166,29 +166,71 @@ body{
 	color:#f2f2f2;
 	font-size:30px;
 	border:none;
-	width:15%;
+	width:20%;
 }
 
-.selectContact{
-	overflow:hidden;
-	font-size:30px;
-	width:100%;
-	border:none;
+.sendMessage input[type="submit"]:hover{
+	background-color:var(--second-color);
 }
 
 .selectContactDiv{
 	width:20%;
 	height:100%;
-	border:none;
-	background-color:grey;
+	margin-top: 2px;
+	border-left: 2px solid var(--main-color);
+	border-right: 2px solid var(--main-color);
+	background-color:var(--main-color);
 	float:left;
 	position:fixed;
+	text-align:center;
+}
+
+.selectContactDiv label{
+	color:white;
+	font-size:30px;
+}
+
+.selectContactDiv select{
+	overflow:hidden;
+	font-size:30px;
+	width:100%;
+	border:none;
+	overflow-y: auto;
+	outline:0px;
+	height:100%;
+}
+
+.selectContactDiv select option{
+	border-bottom: 1px solid #ccc;
 }
 
 .conv{
 	margin-left:25%;
 	font-size:30px;
 	margin-bottom:60px;
+}
+
+.send{
+	text-align:right;
+	color:white;
+	margin-right:5%;
+}
+
+.send p span{
+	padding:5px;
+	border-radius:5px;
+	background-color:var(--main-color);
+}
+
+.received{
+	text-align:left;
+	color:white;
+}
+
+.received p span{
+	padding:5px;
+	border-radius:5px;
+	background-color:grey;
 }
 
 .offerForm{
