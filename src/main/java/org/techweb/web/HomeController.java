@@ -20,9 +20,11 @@ import org.techweb.dao.HouseRepository;
 import org.techweb.dao.ImageRepository;
 import org.techweb.dao.OfferRepository;
 import org.techweb.dao.TagRepository;
+import org.techweb.dao.UserRepository;
 import org.techweb.entities.House;
 import org.techweb.entities.Image;
 import org.techweb.entities.Offer;
+import org.techweb.entities.User;
 
 @Controller
 public class HomeController {
@@ -34,6 +36,8 @@ public class HomeController {
 	private ImageRepository imageDao;
 	@Autowired
 	private TagRepository tagDao;
+	@Autowired
+	private UserRepository userDao;
 
 	@RequestMapping(value = "/home")
 	public String home(
@@ -65,7 +69,14 @@ public class HomeController {
 
 		if(userName == null) {
 			model.addAttribute("connected", "0");
+			model.addAttribute("admin", "0");
 		} else {
+			User user = userDao.findByName(userName);
+			if(user.isAdmin()) {
+				model.addAttribute("admin", "1");
+			} else {
+				model.addAttribute("admin", "0");
+			}
 			model.addAttribute("connected", "1");
 		}
 		

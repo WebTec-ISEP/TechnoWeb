@@ -64,7 +64,7 @@
 					</c:if>
 				</c:forEach>
 				<td>${o.begin} to ${o.end}</td>
-				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}&name=${name}"> Delete </a> </td>
+				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}"> Delete </a> </td>
 				<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
 				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 			</tr>

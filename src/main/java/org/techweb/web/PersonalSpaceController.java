@@ -72,9 +72,20 @@ public class PersonalSpaceController {
 	}
 	
 	@RequestMapping(value = "/delete")
-	public String delete(Model model, @RequestParam(name = "ref", defaultValue = "") Long offerId,HttpSession session) {
-		offerDao.deleteById(offerId);
-		return("redirect:/personalSpace");
+	public String delete(Model model, @RequestParam(name = "ref", defaultValue = "") Long offerId, HttpSession session) {
+		String userName = (String)session.getAttribute("name");
+		User user = userDao.findByName(userName);
+		Offer offer = offerDao.getById(offerId);
+		House house = houseDao.getById(offer.getHouseId());
+		if(house.getOwner().equals(userName)) {
+			offerDao.deleteById(offerId);
+			return("redirect:/personalSpace");
+		} else if(user.isAdmin()) {
+			offerDao.deleteById(offerId);
+			return("redirect:/home");
+		} else {
+			return("redirect:/home");
+		}
 	}
 	
 

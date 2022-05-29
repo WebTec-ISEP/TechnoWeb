@@ -17,6 +17,10 @@
 			} else {
 				$('.logged').hide();
 			}
+			
+			if(${admin}==0){
+				$('.delete').hide();
+			}
 		});
 	</script>
 </head>
@@ -150,6 +154,7 @@
 			<th>Name</th>
 			<th>Location</th>
 			<th>Duration</th>
+			<th></th>
 		</tr>
 		<c:forEach items="${offers}" var="o" varStatus="loop">
 			<tr>
@@ -161,6 +166,7 @@
 					</c:if>
 				</c:forEach>
 				<td><a href="/offer?ref=${o.idOffer}"><div style="height: 216px; width: 100%">${o.begin} to ${o.end}</div></a></td>
+				<td><a class="delete" href="/delete?ref=${o.idOffer}">delete</a></td>
 			</tr>
 
 		</c:forEach>

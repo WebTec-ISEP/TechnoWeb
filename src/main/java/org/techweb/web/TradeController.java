@@ -33,6 +33,7 @@ public class TradeController {
 		String userName = (String)session.getAttribute("name");
 		if(userName == null) {
 			model.addAttribute("connected", "0");
+			return "redirect:/home";
 		} else {
 			model.addAttribute("connected", "1");
 		}

@@ -32,6 +32,7 @@ public class TechnoWebApp {
 		User user1 = new User("root","123","mail1");
 		User user2 = new User("toto","1234","mail2");
 		User user3 = new User("titi","1234","mail3");
+		user1.setAdmin(true);
 		UserRepository userDao = ctx.getBean(UserRepository.class);
 		userDao.save(user1);
 		userDao.save(user2);

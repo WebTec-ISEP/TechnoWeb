@@ -29,6 +29,9 @@ public class MessagingController {
 	@RequestMapping(value = "/messaging")
 	public String messaging(Model model,@RequestParam(name = "message", defaultValue = "") String message, @RequestParam(name = "recipient", defaultValue = "") String recipient,@RequestParam(name = "user", defaultValue = "") String user, HttpSession session) {
 		String userName = (String)session.getAttribute("name");
+		if(userName == null) {
+			return("redirect:/home");
+		}
 		
 		if(!message.equals("")) {
 			Date date = new Date();

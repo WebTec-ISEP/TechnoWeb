@@ -13,15 +13,18 @@ public class User {
 	private String name;
 	private String password;
 	private String email;
+	private boolean admin;
 	
 	public User(String name, String password, String email) {
 		this.setName(name);
 		this.setPassword(password);
 		this.setEmail(email);
+		this.setAdmin(false);
 	}
 	
 	public User(){
 		super();
+		this.setAdmin(false);
 	}
 
 	public Long getIdUser() {
@@ -54,5 +57,13 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 }
