@@ -65,19 +65,19 @@ public class TechnoWebApp {
 		OfferRepository offerDao = ctx.getBean(OfferRepository.class);
 		
 
-		Offer offer1 = new Offer(house1Id,"2022-05-27","2022-05-29",equipments,services,constraints);
+		Offer offer1 = new Offer(house1Id,"2022-05-27","2022-05-15",equipments,services,constraints);
 		offer1.addTags(new Tag("equipments", "microwave"));
 		offer1.addTags(new Tag("equipments", "bath"));
-		Offer offer2 = new Offer(house2Id,"2022-05-27","2022-05-29",equipments,services,constraints);
+		Offer offer2 = new Offer(house2Id,"2022-02-01","2022-02-25",equipments,services,constraints);
 		offer2.addTags(new Tag("services", "plant"));
 		offer2.addTags(new Tag("constraints", "children"));
-		Offer offer3 = new Offer(house3Id,"2022-05-27","2022-05-29", equipments,services,constraints);
+		Offer offer3 = new Offer(house3Id,"2022-05-10","2022-07-19", equipments,services,constraints);
 		offer3.addTags(new Tag("services", "plant"));
 		offer3.addTags(new Tag("constraints", "children"));
-		Offer offer4 = new Offer(house4Id,"2022-05-27","2022-05-29",equipments,services,constraints);
+		Offer offer4 = new Offer(house4Id,"2022-02-27","2022-03-29",equipments,services,constraints);
 		offer4.addTags(new Tag("equipments", "microwave"));
 		offer4.addTags(new Tag("equipments", "bath"));	
-		Offer offer5 = new Offer(house5Id,"2022-05-27","2022-05-29",equipments,services,constraints);
+		Offer offer5 = new Offer(house5Id,"2022-04-27","2022-06-25",equipments,services,constraints);
 		offer5.addTags(new Tag("equipments", "microwave"));
 		offer5.addTags(new Tag("services", "wifi"));
 		offerDao.save(offer1);
@@ -145,7 +145,7 @@ public class TechnoWebApp {
 		messageDao.save(new Message(user2.getName(),user3.getName(),129,"hi, when your offer say no children, does it mean i can't bring mine or that there is not any comming with the house ?"));
 		messageDao.save(new Message(user3.getName(),user2.getName(),130,"it means you can't bring your childrens..."));
 		messageDao.save(new Message(user2.getName(),user3.getName(),131,"ok that make sense"));
-		messageDao.save(new Message(user1.getName(),user4.getName(),132,"hello world,i'm letting you know that box on the side of the road does not match our housing requirement, your offer will be remove in the near future"));
+		messageDao.save(new Message(user1.getName(),user4.getName(),132,"hello Mr root,i'm letting you know that box on the side of the road does not match our housing requirement, your offer will be remove in the near future"));
 		messageDao.save(new Message(user1.getName(),user3.getName(),133,"bye"));
 		messageDao.save(new Message(user3.getName(),user1.getName(),134,"bye"));
 		System.out.println(

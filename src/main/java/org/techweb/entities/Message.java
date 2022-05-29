@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Message {
 	@Id @GeneratedValue
 	private Long idMessage;
-	@Column(length=100)
+	@Column(length=1000)
 	private String content;
 	private String sender;
 	private String recipient;
