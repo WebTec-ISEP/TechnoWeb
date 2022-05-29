@@ -67,11 +67,11 @@
 			for(Message message:messagesList){
 				if(message.getSender().equals(session.getAttribute("name"))){%>
 					<div class="send">
-						<p><span><%out.print(message.getContent());%></span></p>
+						<div><%out.print(message.getContent());%></div>
 					</div>
 				<%} else {%>
 					<div class="received">
-						<p><span><%out.print(message.getContent());%></span></p>
+						<div><%out.print(message.getContent());%></div>
 					</div>
 				<%}
 			}%>
