@@ -216,21 +216,26 @@ body{
 	margin-right:5%;
 }
 
-.send p span{
+.send div{
+	margin:10px;
 	padding:5px;
 	border-radius:5px;
 	background-color:var(--main-color);
+	display:inline-block;
 }
 
 .received{
 	text-align:left;
 	color:white;
+	margin-right:10%;
 }
 
-.received p span{
+.received div{
+	margin:10px;
 	padding:5px;
 	border-radius:5px;
 	background-color:grey;
+	display:inline-block;
 }
 
 .offerForm{
