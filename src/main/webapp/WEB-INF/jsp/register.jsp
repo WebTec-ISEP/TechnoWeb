@@ -8,27 +8,35 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 </head>
 <body>
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/home">Home</a></li>
+		</ul>
+	</div>
 	<div>
-		<form action="/register" method="post">
+		<form action="/register" method="post" class="offerForm">
 			<table>
 				<tr>
 					<td>Login</td>
 					<td><input type="text" name="name" /></td>
 				</tr>
 				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email" /></td>
+				</tr>
+				<tr>
 					<td>Password</td>
-					<td><input type="password" name="psw" /></td>
+					<td><input type="password" name="password" /></td>
 				</tr>
 				<tr>
 					<td>Verify password</td>
-					<td><input type="password" name="psw" /></td>
+					<td><input type="password" name="verifyPassword" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="action" value="sign up" /></td>
 				</tr>
 			</table>
 		</form>
-		<div> <a href="/home">home</a> </div>
 	</div>
 </body>
 </html>

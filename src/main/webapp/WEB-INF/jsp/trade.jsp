@@ -4,16 +4,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Home</title>
+	<title>Trade</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			if(${connected}!=1){
-				$('.contact').hide();
-				$('.personalSpace').hide();
+			if(${connected}==1){
 				$('.notLogged').hide();
-				$('.linkButton').hide();
 			} else {
 				$('.logged').hide();
 			}
@@ -23,36 +20,42 @@
 <body>
 	<div class="navigationBar">
 		<ul>
-			<li><a href="/offer?ref=${idOffer}">Back</a></li>
+			<li><a href="/offer?ref=${offer.idOffer}">Back</a></li>
 			<li><a href="/home">Home</a></li>
 			<li class = "logged"><a href="/personalSpace">Personal space</a></li>
 			<li><a class = "logged" href="/messaging">Messages</a></li>
 			<li class = "logged" style="float:right"><a href="/logout">log out</a></li>
 		</ul>
 	</div>
-	<a class="linkButton" href="/messaging?user=${user.name}" class="contact">contact</a>
-	<h1>${user.name}</h1>
-	<h1>${user.email}</h1>
+	
 	<table class="tabOffers">
-			<tr>
-				<th></th>
-				<th>Name</th>
-				<th>Location</th>
-				<th>Duration</th>
-			</tr>
-			<c:forEach items="${offers}" var="o" varStatus="loop">
-			<tr>
-				<td width="384" height="216"><a href="/offer?ref=${o.idOffer}"><img src="data:image/jpg;base64,${images[loop.index]}" width="384" height="216"/></a></td>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Duration</th>
+			<th>Description</th>
+			<th>Owner</th>
+		</tr>
+		<tr>
+			<td>${house.name}</td>
+			<td>${house.location}</td>
+			<td>${offer.begin} to ${offer.end}</td>
+			<td>${house.description}</td>
+			<td><a href="/profil?ref=${offer.idOffer}&name=${house.owner}">${house.owner}</a></td>
+		</tr>
+	</table>
+	<form action="/tradeProposal" method="post" class="tradeProposal">
+		<select class="selectOffer" name="selected">
+			<c:forEach items="${offers}" var="o">
 				<c:forEach items="${houses}" var="h">
 					<c:if test = "${h.idHouse == o.houseId}">
-						<td><a href="/offer?ref=${o.idOffer}"><div style="height: 216px; width: 100%">${h.name}</div></a></td>
-						<td><a href="/offer?ref=${o.idOffer}"><div style="height: 216px; width: 100%">${h.location}</div></a></td>
+						<option value="${o.idOffer}">${h.name}</option><a href="/detail?ref=${o.idOffer}">Detail</a>
 					</c:if>
 				</c:forEach>
-				<td><a href="/offer?ref=${o.idOffer}"><div style="height:216px;width:100%">${o.begin} to ${o.end}</div></a></td>
-			</tr>
-
 			</c:forEach>
-	</table>
+		</select>
+		<input type="hidden" name="idOffer" value="${offer.idOffer}" />
+		<input id ="proposeOffer" type="submit" name="action" value="propose" />
+	</form>
 </body>
 </html>

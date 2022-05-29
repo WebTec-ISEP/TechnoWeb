@@ -6,37 +6,90 @@
 	<meta charset="utf-8">
 	<title>Personal space</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			if(${acceptedOffers.size()}==0){
+				$('#accepted').hide();
+			}
+		});
+	</script>
 </head>
 <body>
-	<div> 
-		<a href="/home">home</a> 
-		<a href="/messaging">messages</a>
+	<div class="navigationBar">
+		<ul>
+			<li><a href="/home">Home</a></li>
+			<li><a class="active" href="#personalSpace">Personal space</a></li>
+			<li><a href="/messaging">Messages</a></li>
+			<li style="float:right"><a href="/logout">log out</a></li>
+		</ul>
 	</div>
 	
-	<form action="/home" method="post">
-			<table>
-				<tr>
-					<td><input type="text" name="motCle" placeholder="search..."/></td>
-					<td><input type="submit" name="action" value="search" /></td>
-				</tr>
-			</table>
-	</form>
-    
-    <table class="taboffers">
+	<table class="tabOffers">
+    	<caption>Your houses</caption>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Description</th>
+			<th>Rate</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<c:forEach items="${houses}" var="h">
 			<tr>
-				<th>REF</th>
-				<th>Name</th>
+				<td>${h.name}</td>
+				<td>${h.location}</td>
+				<td>${h.description}</td>
+				<td>${h.rate==-1?"unknown":h.rate}</td>
+				<td><a onclick="return confirm('Please Confirm')" href="/house/delete?ref=${h.idHouse}&name=${name}"> Delete </a> </td>
+				<td><a href="/house/edit?ref=${h.idHouse}">Edit</a></td>
 			</tr>
-			<c:forEach items="${offers}" var="o">
+		</c:forEach>
+	</table>
+    <a href="/house" class="addButton">Add</a>
+    <table class="tabOffers">
+    	<caption>Your offers</caption>
+		<tr>
+			<th>House</th>
+			<th>Duration</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<c:forEach items="${offers}" var="o">
 			<tr>
-				<td>${o.idOffer}</td>
-				<td>${o.name}</td>
-				<td> <a onclick="return confirm('Please Confirm')" href="/teams/delete?ref=${o.idOffer}&mc=${motC}"> Delete </a> </td>
-				<td><a href="/edit?ref=${o.idOffer}&name=${o.name}&edit=0&mc=${motC}">Edit</a></td>
+				<c:forEach items="${houses}" var="h">
+					<c:if test = "${h.idHouse == o.houseId}">
+						<td>${h.name}</td>
+					</c:if>
+				</c:forEach>
+				<td>${o.begin} to ${o.end}</td>
+				<td> <a onclick="return confirm('Please Confirm')" href="/delete?ref=${o.idOffer}"> Delete </a> </td>
+				<td><a href="/edit?ref=${o.idOffer}">Edit</a></td>
+				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
 			</tr>
-
-			</c:forEach>
-			<tr><td><a href="/add">Add</a></td></tr>
+		</c:forEach>
+	</table>
+	<a href="/addOffer" class="addButton">Add</a>
+	
+	<table class="tabOffers" id="accepted">
+    	<caption>Accepted Offers</caption>
+		<tr>
+			<th>House</th>
+			<th>Duration</th>
+			<th></th>
+		</tr>
+		<c:forEach items="${acceptedOffers}" var="o">
+			<tr>
+				<c:forEach items="${acceptedHouses}" var="h">
+					<c:if test = "${h.idHouse == o.houseId}">
+						<td>${h.name}</td>
+					</c:if>
+				</c:forEach>
+				<td>${o.begin} to ${o.end}</td>
+				<td><a href="/detail?ref=${o.idOffer}">Detail</a></td>
+			</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>
